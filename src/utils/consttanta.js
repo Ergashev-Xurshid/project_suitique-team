@@ -20,3 +20,23 @@ export const menuItem = [
     item:"Contact"
   },
 ]
+
+export const footerItem = [
+  {
+    path:"about",
+    item:"About"
+  },
+  {
+    path:"contact",
+    item:"Contact"
+  },
+  {
+    path:"news",
+    item:"Privacy Policy"
+  },
+  { 
+    path:"terms",
+    item:"Delivery terms"
+  }
+
+]

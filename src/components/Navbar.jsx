@@ -22,7 +22,7 @@ function Navbar() {
   
 
   return (
-    <section className='container mx-auto px-4 flex items-center justify-between'>
+    <section className='container mx-auto px-10 flex items-center justify-between'>
       <Link to={"/"} className='cursor-pointer'>
         <img className='w-[60px]' src={logo} alt="logo" />
       </Link>
