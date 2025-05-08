@@ -1,0 +1,22 @@
+export const menuItem = [
+  {
+    path:"/",
+    item:"Home"
+  },
+  {
+    path:"catalog",
+    item:"Catalog"
+  },
+  {
+    path:"about",
+    item:"About"
+  },
+  {
+    path:"news",
+    item:"News"
+  },
+  {
+    path:"contact",
+    item:"Contact"
+  },
+]
