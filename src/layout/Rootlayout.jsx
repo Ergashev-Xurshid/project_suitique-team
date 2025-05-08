@@ -8,7 +8,7 @@ function Rootlayout() {
       <header className='fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 bg-transparent'>
         <Navbar/>
       </header>
-      <main>
+      <main className='flex-grow pt-16'>
         <Outlet/>
       </main>
       <footer></footer>
