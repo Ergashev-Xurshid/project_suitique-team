@@ -3,5 +3,16 @@
   "Catalog":"Catalog",
   "About":"About",
   "News":"News",
-  "Contact":"Contact"
+  "Contact":"Contact",
+  "Privacy Policy":"Privacy Policy",
+  "Delivery terms":"Delivery terms",
+
+  "footer_logo-text":"Premium quality menswear focused on exceptional materials and perfect fit.",
+  "shop":"Shop",
+  "view_all":"View All Products",
+  "company":"Company",
+  "subscribe-title":"Subscribe to our newsletter",
+  "subscribe-text":"Subscribe to receive updates, access to exclusive deals, and more.",
+  "email":"Email",
+  "footer_bottom-text":"© 2025 AORON. All rights reserved."
 }

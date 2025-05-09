@@ -3,7 +3,7 @@ import { fetchCategory } from '../services/services'
 
 const useCategoryStore = create((set) => ({
   categories: [],
-
+  error:"",
   loadCategories: async () => {
     try {
       const res = await fetchCategory()
