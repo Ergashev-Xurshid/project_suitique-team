@@ -18,3 +18,8 @@ export const fetchColor = async () => {
   const res = await fetch("https://back.aoron.uz/api/colors") 
   return await res.json() 
 }
+//TeamSection
+export const fetchTeamSection = async () => {
+  const res = await fetch("https://back.aoron.uz/api/team-section") 
+  return await res.json() 
+}

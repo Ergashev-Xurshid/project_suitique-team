@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
+import useTeamSection from "../../store/teamSection";
 
 const About = () => {
+
+
+  const {teamSection , loadTeamSection} =useTeamSection()
+  useEffect(()=>{
+    loadTeamSection()
+  },[])
+  console.log(teamSection);
+  
   return (
     <>
       <div className="container mx-auto px-4 max-w-4xl mt-20">
@@ -100,30 +109,30 @@ const About = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-light mb-10 text-center">Our Values</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center space-y-4 p-6 transition-all hover:bg-teal-200/20 rounded-lg">
-              <div className="w-12 h-12 mx-auto bg-teal-200 rounded-full flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <div className="text-center space-y-4 p-6 transition-all hover:bg-gray-300/20 rounded-lg">
+              <div className="w-12 h-12 mx-auto bg-gray-300 rounded-full flex items-center justify-center">
+                {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="10"></circle>
-                </svg>
+                </svg> */}
               </div>
               <h3 className="text-lg font-medium">Quality First</h3>
               <p className="text-muted-foreground">We never compromise on quality. From fabrics to construction, every element is carefully chosen for excellence.</p>
             </div>
 
-            <div className="text-center space-y-4 p-6 transition-all hover:bg-teal-200/20 rounded-lg">
-              <div className="w-12 h-12 mx-auto bg-teal-200 rounded-full flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <div className="text-center space-y-4 p-6 transition-all hover:bg-gray-300/20 rounded-lg">
+              <div className="w-12 h-12 mx-auto bg-gray-300 rounded-full flex items-center justify-center">
+                {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="10"></circle>
-                </svg>
+                </svg> */}
               </div>
               <h3 className="text-lg font-medium">Sustainability</h3>
               <p className="text-muted-foreground">We're committed to reducing our environmental impact through responsible sourcing and sustainable practices.</p>
             </div>
-            <div className="text-center space-y-4 p-6 transition-all hover:bg-teal-200/20 rounded-lg">
-              <div className="w-12 h-12 mx-auto bg-teal-200 rounded-full flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <div className="text-center space-y-4 p-6 transition-all hover:bg-gray-300/20 rounded-lg">
+              <div className="w-12 h-12 mx-auto bg-gray-300 rounded-full flex items-center justify-center">
+                {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="10"></circle>
-                </svg>
+                </svg> */}
               </div>
               <h3 className="text-lg font-medium">Innovation</h3> {/* Burada başlığı düzelttim */}
               <p className="text-muted-foreground">We continually strive to innovate and integrate the latest trends in fashion and technology into our designs.</p> {/* Burada açıklamayı düzelttim */}

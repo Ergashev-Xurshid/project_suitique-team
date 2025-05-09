@@ -69,11 +69,11 @@ function Footer() {
         <div className='space-y-4'>
           <h4 className='font-medium text-sm uppercase tracking-wider'>{t("shop")}</h4>
           <nav className='flex flex-col space-y-2'>
-            <Link className='text-sm text-gray-500 hover:text-gray-500 transition-colors' to={"/catalog"}>{t("view_all")}</Link>
+            <Link className='text-sm text-gray-500 hover:text-gray-400 transition-colors' to={"/catalog"}>{t("view_all")}</Link>
             {categories.map((data , i)=>(
               <Link   
               key={i}
-              className='text-sm text-gray-500 hover:text-gray-500 transition-colors'
+              className='text-sm text-gray-500 hover:text-gray-400 transition-colors'
               >{data?.[`name_${currentLang}`]}
             </Link>
             ))}
@@ -86,7 +86,7 @@ function Footer() {
               <Link 
                 key={i}
                 to={item.path}
-                className='text-sm text-gray-500 hover:text-gray-500 transition-colors'
+                className='text-sm text-gray-500 hover:text-gray-400 transition-colors'
                 >{t(item.item)}
               </Link>
             ))}
