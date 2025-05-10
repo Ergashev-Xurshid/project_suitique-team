@@ -1,14 +1,14 @@
 import { create } from 'zustand'
 import { fetchProducts } from '../services/services'
 
-const useProductsStore = create((set) => ({
-  Products: [],
+const useProductStore = create((set) => ({
+  products: [],
   error:"",
-  loadCategories: async () => {
+  loadProducts: async () => {
     try {
       const res = await fetchProducts()
       if (res.success) {
-        set({ categories: res.data.products })
+        set({ products: res.data.products })
       } else {
         set({ error: 'No success response' })
       }
@@ -18,4 +18,4 @@ const useProductsStore = create((set) => ({
   }
 }))
 
-export default useCategoryStore
+export default useProductStore

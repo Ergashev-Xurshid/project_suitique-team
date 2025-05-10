@@ -1,10 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
-import { FaCheckCircle, FaLeaf, FaBalanceScale } from 'react-icons/fa';
 
 const About = () => {
-  const { t } = useTranslation();
-
   return (
     <>
       <div className="container mx-auto px-4 max-w-4xl mt-20">
@@ -90,7 +87,9 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center space-y-4 p-6 transition-all hover:bg-teal-200/20 rounded-lg">
               <div className="w-12 h-12 mx-auto bg-teal-200 rounded-full flex items-center justify-center">
-                <FaCheckCircle size={24} className="text-teal-600" /> {/* React Icon */}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                </svg>
               </div>
               <h3 className="text-lg font-medium">{t("values.quality")}</h3>
               <p className="text-muted-foreground">{t("values.quality.text")}</p>
@@ -98,15 +97,18 @@ const About = () => {
 
             <div className="text-center space-y-4 p-6 transition-all hover:bg-teal-200/20 rounded-lg">
               <div className="w-12 h-12 mx-auto bg-teal-200 rounded-full flex items-center justify-center">
-                <FaLeaf size={24} className="text-teal-600" /> {/* React Icon */}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                </svg>
               </div>
               <h3 className="text-lg font-medium">{t("values.sustainability")}</h3>
               <p className="text-muted-foreground">{t("values.sustainability.text")}</p>
             </div>
-
             <div className="text-center space-y-4 p-6 transition-all hover:bg-teal-200/20 rounded-lg">
               <div className="w-12 h-12 mx-auto bg-teal-200 rounded-full flex items-center justify-center">
-                <FaBalanceScale size={24} className="text-teal-600" /> {/* React Icon */}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                </svg>
               </div>
               <h3 className="text-lg font-medium">{t("values.ethical")}</h3>
               <p className="text-muted-foreground">{t("values.ethical.text")}</p>
