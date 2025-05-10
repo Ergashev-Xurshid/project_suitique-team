@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 function ProductDetail() {
 
 
-  const {t} = useTranslation()
+  const { t } = useTranslation()
 
 
   const { id } = useParams();
@@ -144,9 +144,9 @@ function ProductDetail() {
               <p className="text-gray-500">
                 {element.description_en.length > 99
                   ? element.description_en.slice(
-                      0,
-                      element.description_en.lastIndexOf(" ", 100)
-                    ) + "..."
+                    0,
+                    element.description_en.lastIndexOf(" ", 100)
+                  ) + "..."
                   : element.description_en}
               </p>
               <div className="flex gap-2 mt-2">
