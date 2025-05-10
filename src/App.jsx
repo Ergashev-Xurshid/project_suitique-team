@@ -27,6 +27,7 @@ function App() {
         <Route path='/news' element={<News />} />
         <Route path='/contact' element={<Contact />} />
         <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path='/terms' element={<Terms />} />
       </Route>
     )
   )
