@@ -53,5 +53,12 @@
   "values.sustainability": "Sustainability",
   "values.sustainability.text": "We're committed to reducing our environmental impact through responsible sourcing and sustainable practices.",
   "values.ethical": "Ethical",
-  "values.ethical.text": "We believe in fair labor practices and work closely with our partners to ensure ethical production standards."
+  "values.ethical.text": "We believe in fair labor practices and work closely with our partners to ensure ethical production standards.",
+  
+  "product-title":"You may also like",
+  "add-card-btn":"Add to Cart",
+  "Material":"Material",
+  "Size":"Size",
+  "Color":"Color",
+  "Quantity":"Quantity"
 }

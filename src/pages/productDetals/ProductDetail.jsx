@@ -4,9 +4,16 @@ import useProductStore from "../../store/productStore";
 import { IoIosArrowUp } from "react-icons/io";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
+
 
 
 function ProductDetail() {
+
+
+  const {t} = useTranslation()
+
+
   const { id } = useParams();
   // const [data, setData] = useState([]);
 
@@ -67,30 +74,30 @@ function ProductDetail() {
             Размеры: 44, 46, 48, 50, 52
           </p>
           <div>
-            <h3 className="text-sm font-medium mb-1">Material</h3>
+            <h3 className="text-sm font-medium mb-1">{t("Material")}</h3>
             <p className="text-sm text-muted-foreground">Вискоза: 100%</p>
           </div>
           <div>
-            <h3 className="text-sm font-medium mb-1">Size</h3>
+            <h3 className="text-sm font-medium mb-1">{t("Size")}</h3>
             <div className="flex flex-wrap gap-2">
               <p className="min-w-[3rem] p-2 text-sm border rounded-md transition-all hover:border-primary/50 hover:bg-primary hover:text-white">44-52</p>
             </div>
           </div>
           <div>
-            <h3 className="text-sm font-medium mb-2">Color</h3>
+            <h3 className="text-sm font-medium mb-2">{t("Color")}</h3>
             <div className="flex items-center space-x-1 mt-2">
               <p className="w-7 h-7 rounded-full bg-black border hover:ring-2 hover:ring-primary"></p>
             </div>
           </div>
           <div>
-            <h3 className="text-sm font-medium mb-2">Quantity</h3>
+            <h3 className="text-sm font-medium mb-2">{t("Quantity")}</h3>
             <div className="flex items-center border border-input rounded-md w-32">
               <button className="w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground disabled:opacity-50">-</button>
               <input type="text" name="" id="" className="w-12 h-10 text-center border-none focus:outline-none" />
               <button className="w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground">+</button>
             </div>
           </div>
-          <button className="w-full bg-black py-4 rounded-[12px] text-white">Add to Cart</button>
+          <button className="w-full bg-black hover:bg-black/90 cursor-pointer py-4 rounded-[12px] text-white">{t("add-card-btn")}</button>
           <div className="border-t border-border pt-4 space-y-4">
             <div>
               <button className="flex justify-between items-center w-full py-2">
@@ -113,14 +120,7 @@ function ProductDetail() {
       </div>
       <div className="mt-20">
         <div className="flex items-center justify-between w-full mt-10">
-          <p className="text-4xl font-light">You may also like</p>
-          <motion.button
-            variants={childVariants}
-            className="bg-white p-3 sm:p-4 border border-gray-200 text-black rounded-xl cursor-pointer flex items-center gap-2 group text-sm sm:text-base"
-          >
-            <p>Посмотреть все продукты</p>
-            <FaArrowRight className="transform transition-transform duration-300 group-hover:translate-x-2" />
-          </motion.button>
+          <p className="text-4xl font-light">{t("product-title")}</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 my-10">
           {products.slice(0, 4).map((element, index) => (
