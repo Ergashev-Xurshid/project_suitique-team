@@ -8,7 +8,7 @@ import { FaArrowRight } from "react-icons/fa6";
 
 function ProductDetail() {
   const { id } = useParams();
-  // const [product, setProduct] = useState([]);
+  // const [data, setData] = useState([]);
 
 
 
@@ -41,7 +41,7 @@ function ProductDetail() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         <div className="space-y-4">
           <div className="aspect-square bg-secondary/20 overflow-hidden">
-            <img src="https://back.aoron.uz/7eb6ac53-eed6-4dab-8031-c1d237ea18a0.jpeg" alt="" className="w-full h-full object-cover object-center transition-all duration-300" />
+            <img src="https://back.aoron.uz/86bced26-8e74-4cee-a158-ad4d45705af5.jpeg" alt="" className="w-full h-full object-cover object-center transition-all duration-300" />
           </div>
           <div className="flex space-x-2">
             <button className="aspect-square w-20 bg-secondary/20 p-1 transition-all ring-2 ring-primary">
