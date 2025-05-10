@@ -3,6 +3,7 @@ import backgoundImage from "../../assets/homePage background image/Background.pn
 
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [data, setData] = useState([]);
@@ -101,39 +102,41 @@ function Home() {
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 my-10">
           {data.map((element, index) => (
-            <div key={index} className="flex flex-col gap-2">
-              <div className="relative group overflow-hidden cursor-pointer">
-                {element.images?.length > 0 && (
-                  <img
-                    src={`https://back.aoron.uz/${element.images[0]}`}
-                    alt="image"
-                    className="w-full h-auto transform transition-transform duration-500 group-hover:scale-150"
-                  />
-                )}
-              </div>
-              <div className="flex justify-between items-center">
-                <p className="font-semibold">{element.title_en}</p>
-                <p>{`$${element.price}`}</p>
-              </div>
-              <p className="text-gray-500">
-                {element.description_en.length > 99
-                  ? element.description_en.slice(
+            <Link to={`/product/${element.id}`} key={index}>
+              <div  className="flex flex-col gap-2">
+                <div className="relative group overflow-hidden cursor-pointer">
+                  {element.images?.length > 0 && (
+                    <img
+                      src={`https://back.aoron.uz/${element.images[0]}`}
+                      alt="image"
+                      className="w-full h-auto transform transition-transform duration-500 group-hover:scale-150"
+                    />
+                  )}
+                </div>
+                <div className="flex justify-between items-center">
+                  <p className="font-semibold">{element.title_en}</p>
+                  <p>{`$${element.price}`}</p>
+                </div>
+                <p className="text-gray-500">
+                  {element.description_en.length > 99
+                    ? element.description_en.slice(
                       0,
                       element.description_en.lastIndexOf(" ", 100)
                     ) + "..."
-                  : element.description_en}
-              </p>
-              <div className="flex gap-2 mt-2">
-                {element.colors?.map((color, i) => (
-                  <div
-                    key={i}
-                    className="w-3 h-3 rounded-full border"
-                    style={{ backgroundColor: color.color_en }}
-                    title={color.color_en}
-                  ></div>
-                ))}
+                    : element.description_en}
+                </p>
+                <div className="flex gap-2 mt-2">
+                  {element.colors?.map((color, i) => (
+                    <div
+                      key={i}
+                      className="w-3 h-3 rounded-full border"
+                      style={{ backgroundColor: color.color_en }}
+                      title={color.color_en}
+                    ></div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <motion.button
@@ -175,9 +178,9 @@ function Home() {
               <p className="text-gray-500">
                 {element.description_en.length > 99
                   ? element.description_en.slice(
-                      0,
-                      element.description_en.lastIndexOf(" ", 100)
-                    ) + "..."
+                    0,
+                    element.description_en.lastIndexOf(" ", 100)
+                  ) + "..."
                   : element.description_en}
               </p>
               <div className="flex gap-2 mt-2">

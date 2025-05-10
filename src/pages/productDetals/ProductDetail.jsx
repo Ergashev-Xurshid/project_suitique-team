@@ -11,11 +11,11 @@ import { useTranslation } from "react-i18next";
 function ProductDetail() {
 
 
-  const {t} = useTranslation()
+  const { t } = useTranslation()
 
 
   const { id } = useParams();
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
 
 
 
@@ -30,32 +30,43 @@ function ProductDetail() {
 
 
 
-  // useEffect(() => {
-  //   fetch(`https://back.aoron.uz/api/product/17}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setProduct(data));
-  // }, [id]);
-  // console.log(product);
+  useEffect(() => {
+    fetch(`https://back.aoron.uz/api/product/${id}`)
+      .then((res) => res.json())
+      .then((data) => setData(data?.data));
+  }, [id]);
+  console.log(" data ", data);
 
 
 
-  const childVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
+
   return (
     <section className="container mx-auto px-10 py-10 md:py-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         <div className="space-y-4">
           <div className="aspect-square bg-secondary/20 overflow-hidden">
-            <img src="https://back.aoron.uz/86bced26-8e74-4cee-a158-ad4d45705af5.jpeg" alt="" className="w-full h-full object-cover object-center transition-all duration-300" />
+            {data.images && data.images.length > 0 && (
+              <img
+                src={`https://back.aoron.uz/${data.images[0]}`}
+                alt="Asosiy rasm"
+                className="w-full h-full object-cover object-center transition-all duration-300"
+              />
+            )}
           </div>
           <div className="flex space-x-2">
             <button className="aspect-square w-20 bg-secondary/20 p-1 transition-all ring-2 ring-primary">
-              <img src="https://back.aoron.uz/86bced26-8e74-4cee-a158-ad4d45705af5.jpeg" alt="" className="w-full h-full object-cover object-center" />
+              <img
+                src={`https://back.aoron.uz/${data.images[0]}`}
+                alt="Asosiy rasm"
+                className="w-full h-full object-cover object-center transition-all duration-300"
+              />
             </button>
             <button className="aspect-square w-20 bg-secondary/20 p-1 transition-all ring-2 ring-primary">
-              <img src="https://back.aoron.uz/7eb6ac53-eed6-4dab-8031-c1d237ea18a0.jpeg" alt="" className="w-full h-full object-cover object-center" />
+             <img
+                src={`https://back.aoron.uz/${data.images[1]}`}
+                alt="Asosiy rasm"
+                className="w-full h-full object-cover object-center transition-all duration-300"
+              />
             </button>
           </div>
         </div>
@@ -144,9 +155,9 @@ function ProductDetail() {
               <p className="text-gray-500">
                 {element.description_en.length > 99
                   ? element.description_en.slice(
-                      0,
-                      element.description_en.lastIndexOf(" ", 100)
-                    ) + "..."
+                    0,
+                    element.description_en.lastIndexOf(" ", 100)
+                  ) + "..."
                   : element.description_en}
               </p>
               <div className="flex gap-2 mt-2">
