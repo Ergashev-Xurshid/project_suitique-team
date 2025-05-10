@@ -1,11 +1,20 @@
 import React, { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
-
-
+import { BsCircle } from "react-icons/bs";
+import useTeamSection from "../../store/teamSection";
 
 
 const About = () => {
-  const { t, } = useTranslation();
+
+  // Team Section
+  const { t, i18n } = useTranslation();
+  const { teamSection, loadTeamSection, error } = useTeamSection();
+  const baseURL = "https://back.aoron.uz/";
+
+  useEffect(() => {
+    loadTeamSection();
+  }, []);
+
   return (
     <>
       <div className="container mx-auto px-4 max-w-4xl mt-20">
@@ -89,34 +98,62 @@ const About = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-light mb-10 text-center">{t("values.title")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center space-y-4 p-6 transition-all hover:bg-teal-200/20 rounded-lg">
+
+            <div className="text-center space-y-4 p-6 transition-all hover:bg-teal-200/10 rounded-lg">
               <div className="w-12 h-12 mx-auto bg-teal-200 rounded-full flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                </svg>
+                <BsCircle className="w-6 h-6 text-teal-800" />
               </div>
               <h3 className="text-lg font-medium">{t("values.quality")}</h3>
               <p className="text-muted-foreground">{t("values.quality.text")}</p>
             </div>
 
-            <div className="text-center space-y-4 p-6 transition-all hover:bg-teal-200/20 rounded-lg">
+            <div className="text-center space-y-4 p-6 transition-all hover:bg-teal-200/10 rounded-lg">
               <div className="w-12 h-12 mx-auto bg-teal-200 rounded-full flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                </svg>
+                <BsCircle className="w-6 h-6 text-teal-800" />
               </div>
               <h3 className="text-lg font-medium">{t("values.sustainability")}</h3>
               <p className="text-muted-foreground">{t("values.sustainability.text")}</p>
             </div>
-            <div className="text-center space-y-4 p-6 transition-all hover:bg-teal-200/20 rounded-lg">
+
+            <div className="text-center space-y-4 p-6 transition-all hover:bg-teal-200/10 rounded-lg">
               <div className="w-12 h-12 mx-auto bg-teal-200 rounded-full flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                </svg>
+                <BsCircle className="w-6 h-6 text-teal-800" />
               </div>
               <h3 className="text-lg font-medium">{t("values.ethical")}</h3>
               <p className="text-muted-foreground">{t("values.ethical.text")}</p>
             </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-16 bg-[#f4f4f4]">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-light mb-10 text-center">{t("team.title")}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {teamSection.map((member) => {
+              const position =
+                i18n.language === "ru"
+                  ? member.position_ru
+                  : i18n.language === "de"
+                    ? member.position_de
+                    : member.position_en;
+
+              return (
+                <div className="text-center space-y-3" key={member.id}>
+                  <div className="aspect-square overflow-hidden rounded-full max-w-[200px] mx-auto">
+                    <img
+                      src={baseURL + member.image}
+                      className="w-full h-full object-cover"
+                      alt={member.full_name}
+                    />
+                  </div>
+                  <h3 className="font-medium text-lg">{member.full_name}</h3>
+                  <p className="text-muted-foreground">{position}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
