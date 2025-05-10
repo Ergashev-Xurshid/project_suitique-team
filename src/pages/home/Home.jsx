@@ -5,6 +5,13 @@ import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa6";
 
 function Home() {
+  const {products , loadProducts} = useProductStore()
+  useEffect(()=>{
+    loadProducts()
+  },[])
+  // api dai ma'lumotlar mana shu products da
+  console.log(products);
+    
   // const { products, loadProducts } = useProductStore();
   const [data, setData] = useState([]);
   const [images, setImage] = useState("");

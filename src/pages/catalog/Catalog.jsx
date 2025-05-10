@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import useSizeStore from '../../store/sizeStore'
 import useColorStore from '../../store/colorStory'
+import useProductStore from '../../store/productStore'
 
 function Catalog() {
   const {size , loadSize} =useSizeStore()
