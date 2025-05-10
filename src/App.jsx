@@ -1,5 +1,5 @@
 import './App.css'
-import { createBrowserRouter , createRoutesFromElements , Route, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 
 //layouts
 import Rootlayout from './layout/Rootlayout'
@@ -9,6 +9,8 @@ import Catalog from './pages/catalog/Catalog'
 import About from './pages/about/About'
 import News from './pages/news/News'
 import Contact from './pages/contact/Contact'
+import Terms from './pages/terms/Terms'
+
 
 
 
@@ -18,19 +20,20 @@ function App() {
 
   const routes = createBrowserRouter(
     createRoutesFromElements(
-      <Route path='/' element={<Rootlayout/>}>
-        <Route index element={<Home/>}/>
-        <Route path='/catalog' element={<Catalog/>}/>
-        <Route path='/about' element={<About/>}/>
-        <Route path='/news' element={<News/>}/>
-        <Route path='/contact' element={<Contact/>}/>
+      <Route path='/' element={<Rootlayout />}>
+        <Route index element={<Home />} />
+        <Route path='/catalog' element={<Catalog />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/news' element={<News />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/terms' element={<Terms />} />
       </Route>
     )
   )
 
   return (
     <>
-      <RouterProvider router={routes}/>
+      <RouterProvider router={routes} />
     </>
   )
 }
