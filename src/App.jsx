@@ -10,6 +10,7 @@ import About from './pages/about/About'
 import News from './pages/news/News'
 import Contact from './pages/contact/Contact'
 import Terms from './pages/termService/Terms'
+import ProductDetail from './pages/productDetals/ProductDetail'
 
 
 
@@ -25,6 +26,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/news' element={<News />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
       </Route>
     )
   )
