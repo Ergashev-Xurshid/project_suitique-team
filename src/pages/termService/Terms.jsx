@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Terms = () => {
-  console.log("TermsOfService bileşeni render ediliyor");
+
   const handleGoBack = () => {
     window.history.back();
   };
