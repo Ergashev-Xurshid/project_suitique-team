@@ -7,6 +7,10 @@ import { useTranslation } from "react-i18next";
 
 
 function ProductDetail() {
+  // sahifani tepaga olib chiqadi
+  useEffect(() => {
+  window.scrollTo(0, 0); 
+}, []);
 
   //language
   const { t } = useTranslation()

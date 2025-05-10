@@ -103,7 +103,7 @@ function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 my-10">
           {data.map((element, index) => (
             <Link to={`/product/${element.id}`} key={index}>
-              <div  className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2">
                 <div className="relative group overflow-hidden cursor-pointer">
                   {element.images?.length > 0 && (
                     <img
@@ -158,42 +158,44 @@ function Home() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 my-10">
           {data.slice(0, 4).map((element, index) => (
-            <div key={index} className="flex flex-col gap-2">
-              <div className="relative group overflow-hidden cursor-pointer">
-                {element.images?.length > 0 && (
-                  <img
-                    src={`https://back.aoron.uz/${element.images[0]}`}
-                    alt="image"
-                    className="w-full h-auto transform transition-transform duration-500 group-hover:scale-150"
-                  />
-                )}
-                <p className="bg-black px-3 py-1 text-sm text-white absolute top-2">
-                  NEW
+            <Link to={`/product/${element.id}`}>
+              <div key={index} className="flex flex-col gap-2">
+                <div className="relative group overflow-hidden cursor-pointer">
+                  {element.images?.length > 0 && (
+                    <img
+                      src={`https://back.aoron.uz/${element.images[0]}`}
+                      alt="image"
+                      className="w-full h-auto transform transition-transform duration-500 group-hover:scale-150"
+                    />
+                  )}
+                  <p className="bg-black px-3 py-1 text-sm text-white absolute top-2">
+                    NEW
+                  </p>
+                </div>
+                <div className="flex justify-between items-center">
+                  <p className="font-semibold">{element.title_en}</p>
+                  <p>{`$${element.price}`}</p>
+                </div>
+                <p className="text-gray-500">
+                  {element.description_en.length > 99
+                    ? element.description_en.slice(
+                      0,
+                      element.description_en.lastIndexOf(" ", 100)
+                    ) + "..."
+                    : element.description_en}
                 </p>
+                <div className="flex gap-2 mt-2">
+                  {element.colors?.map((color, i) => (
+                    <div
+                      key={i}
+                      className="w-3 h-3 rounded-full border"
+                      style={{ backgroundColor: color.color_en }}
+                      title={color.color_en}
+                    ></div>
+                  ))}
+                </div>
               </div>
-              <div className="flex justify-between items-center">
-                <p className="font-semibold">{element.title_en}</p>
-                <p>{`$${element.price}`}</p>
-              </div>
-              <p className="text-gray-500">
-                {element.description_en.length > 99
-                  ? element.description_en.slice(
-                    0,
-                    element.description_en.lastIndexOf(" ", 100)
-                  ) + "..."
-                  : element.description_en}
-              </p>
-              <div className="flex gap-2 mt-2">
-                {element.colors?.map((color, i) => (
-                  <div
-                    key={i}
-                    className="w-3 h-3 rounded-full border"
-                    style={{ backgroundColor: color.color_en }}
-                    title={color.color_en}
-                  ></div>
-                ))}
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
         <div className="flex items-center justify-between w-full my-20">
