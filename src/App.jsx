@@ -9,8 +9,6 @@ import Catalog from './pages/catalog/Catalog'
 import About from './pages/about/About'
 import News from './pages/news/News'
 import Contact from './pages/contact/Contact'
-import Terms from './pages/terms/Terms'
-
 import Terms from './pages/termService/Terms'
 
 
