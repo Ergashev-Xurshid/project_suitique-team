@@ -109,9 +109,6 @@ function Navbar() {
             ))}
           </nav>
         </div>}
-        <button className='p-2 md:hidden'>
-          <IoMenuSharp size={35} />
-        </button>
       </div>
     </section>
   )
