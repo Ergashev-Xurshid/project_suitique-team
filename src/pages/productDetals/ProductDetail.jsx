@@ -2,24 +2,16 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useProductStore from "../../store/productStore";
 import { IoIosArrowUp } from "react-icons/io";
-import { motion } from "framer-motion";
-import { FaArrowRight } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";
 
 
 
 function ProductDetail() {
 
-
+  //language
   const { t } = useTranslation()
 
-
-  const { id } = useParams();
-  const [data, setData] = useState([]);
-
-
-
-
+  //product api
   const { products, loadProducts } = useProductStore()
 
   useEffect(() => {
@@ -28,7 +20,9 @@ function ProductDetail() {
 
   console.log("products :", products);
 
-
+  //url id data
+  const { id } = useParams();
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     fetch(`https://back.aoron.uz/api/product/${id}`)
@@ -38,35 +32,41 @@ function ProductDetail() {
   console.log(" data ", data);
 
 
+  const [changeImg, setChengeImg] = useState(true)
+
 
 
   return (
     <section className="container mx-auto px-10 py-10 md:py-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         <div className="space-y-4">
-          <div className="aspect-square bg-secondary/20 overflow-hidden">
+          <div className="aspect-square  overflow-hidden ">
             {data.images && data.images.length > 0 && (
               <img
-                src={`https://back.aoron.uz/${data.images[0]}`}
+                src={`https://back.aoron.uz/${changeImg ? data.images[0] : data.images[1]}`}
                 alt="Asosiy rasm"
                 className="w-full h-full object-cover object-center transition-all duration-300"
               />
             )}
           </div>
           <div className="flex space-x-2">
-            <button className="aspect-square w-20 bg-secondary/20 p-1 transition-all ring-2 ring-primary">
-              <img
-                src={`https://back.aoron.uz/${data.images[0]}`}
-                alt="Asosiy rasm"
-                className="w-full h-full object-cover object-center transition-all duration-300"
-              />
+            <button onClick={() => setChengeImg(true)} className={`aspect-square w-20  p-1 transition-all ${changeImg ? "ring-2" : ""}  ring-primary`}>
+              {data.images && data.images.length > 0 && (
+                <img
+                  src={`https://back.aoron.uz/${data.images[0]}`}
+                  alt="Asosiy rasm"
+                  className="w-full h-full object-cover object-center transition-all duration-300"
+                />
+              )}
             </button>
-            <button className="aspect-square w-20 bg-secondary/20 p-1 transition-all ring-2 ring-primary">
-             <img
-                src={`https://back.aoron.uz/${data.images[1]}`}
-                alt="Asosiy rasm"
-                className="w-full h-full object-cover object-center transition-all duration-300"
-              />
+            <button onClick={() => setChengeImg(false)} className={`aspect-square w-20  p-1 transition-all ${changeImg ? "" : "ring-2"}  ring-primary`}>
+              {data.images && data.images.length > 0 && (
+                <img
+                  src={`https://back.aoron.uz/${data.images[1]}`}
+                  alt="Asosiy rasm"
+                  className="w-full h-full object-cover object-center transition-all duration-300"
+                />
+              )}
             </button>
           </div>
         </div>
