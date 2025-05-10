@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import useProductStore from "../../store/productStore";
 import backgoundImage from "../../assets/homePage background image/Background.png";
-import { ArrowRight } from "lucide-react";
+
 import { motion } from "framer-motion";
+import { FaArrowRight } from "react-icons/fa6";
 
 function Home() {
   // const { products, loadProducts } = useProductStore();
@@ -57,7 +57,7 @@ function Home() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="absolute top-1/3 left-[10%] text-white flex flex-col gap-5 justify-start items-start max-w-[90%] md:max-w-[50%]"
+          className="absolute container top-1/3 left-[10%] text-white flex flex-col gap-5 justify-start items-start max-w-[90%] md:max-w-[50%]"
         >
           <motion.p
             variants={childVariants}
@@ -83,14 +83,14 @@ function Home() {
 
           <motion.button
             variants={childVariants}
-            className="bg-white p-3 sm:p-4 text-black rounded-xl cursor-pointer flex gap-2 group text-sm sm:text-base"
+            className="bg-white p-3 sm:p-4 text-black rounded-xl cursor-pointer flex items-center gap-2 group text-sm sm:text-base"
           >
             <p>Смотреть коллекцию</p>
-            <ArrowRight className="transform transition-transform duration-300 group-hover:translate-x-2" />
+            <FaArrowRight className="transform transition-transform duration-300 group-hover:translate-x-2" />
           </motion.button>
         </motion.div>
       </section>
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4 sm:px-8 lg:px-12">
         <p className="text-center text-4xl font-light mt-15">
           Рекомендуемые товары
         </p>
@@ -139,19 +139,19 @@ function Home() {
         </div>
         <motion.button
           variants={childVariants}
-          className="bg-white p-3 sm:p-4 border border-gray-200 mx-auto text-black rounded-xl cursor-pointer flex gap-2 group text-sm sm:text-base"
+          className="bg-white p-3 sm:p-4 border border-gray-200 mx-auto text-black rounded-xl cursor-pointer flex items-center gap-2 group text-sm sm:text-base"
         >
           <p>Посмотреть все продукты</p>
-          <ArrowRight className="transform transition-transform duration-300 group-hover:translate-x-2" />
+          <FaArrowRight className="transform transition-transform duration-300 group-hover:translate-x-2" />
         </motion.button>
         <div className="flex items-center justify-between w-full mt-10">
           <p className="text-4xl font-light">Новинки</p>
           <motion.button
             variants={childVariants}
-            className="bg-white p-3 sm:p-4 border border-gray-200 text-black rounded-xl cursor-pointer flex gap-2 group text-sm sm:text-base"
+            className="bg-white p-3 sm:p-4 border border-gray-200 text-black rounded-xl cursor-pointer flex items-center gap-2 group text-sm sm:text-base"
           >
             <p>Посмотреть все продукты</p>
-            <ArrowRight className="transform transition-transform duration-300 group-hover:translate-x-2" />
+            <FaArrowRight className="transform transition-transform duration-300 group-hover:translate-x-2" />
           </motion.button>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 my-10">
@@ -198,10 +198,10 @@ function Home() {
           <p className="text-4xl font-light">Распродажа</p>
           <motion.button
             variants={childVariants}
-            className="bg-white p-3 sm:p-4 border border-gray-200 text-black rounded-xl cursor-pointer flex gap-2 group text-sm sm:text-base"
+            className="bg-white p-3 sm:p-4 border border-gray-200 text-black rounded-xl cursor-pointer flex items-center gap-2 group text-sm sm:text-base"
           >
             <p>Посмотреть все продукты</p>
-            <ArrowRight className="transform transition-transform duration-300 group-hover:translate-x-2" />
+            <FaArrowRight className="flex transform transition-transform duration-300 group-hover:translate-x-2" />
           </motion.button>
         </div>
       </div>
