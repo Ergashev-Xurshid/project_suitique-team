@@ -20,6 +20,7 @@ function Navbar() {
 
   }, [lng])
 
+<<<<<<< HEAD
 
   const [openMenu, setOpenMenu] = useState(false)
 
@@ -31,13 +32,19 @@ function Navbar() {
     once: true,    
   });
 }, []);
+=======
+>>>>>>> d6ca1163853739f25a419c58ee96d8d6e3fe6cab
 
   return (
     <section className='container  mx-auto px-10 flex items-center justify-between'>
       <Link to={"/"} className='cursor-pointer'>
         <img className='w-[60px]' src={logo} alt="logo" />
       </Link>
+<<<<<<< HEAD
       <nav className='hidden md:flex items-center space-x-4'>
+=======
+      <nav className='hidden md:flex items-center space-x-8'>
+>>>>>>> d6ca1163853739f25a419c58ee96d8d6e3fe6cab
         {menuItem.map((item, index) => (
           <NavLink
             key={index}
@@ -82,6 +89,7 @@ function Navbar() {
             2
           </span>
         </Link>
+<<<<<<< HEAD
         <button
           onClick={() => setOpenMenu(!openMenu)}
           className="md:hidden relative w-[36px] h-8 m-0 flex flex-col justify-between items-center p-2 group focus:outline-none z-50"
@@ -109,6 +117,11 @@ function Navbar() {
             ))}
           </nav>
         </div>}
+=======
+        <button className='p-2 md:hidden'>
+          <IoMenuSharp size={35} />
+        </button>
+>>>>>>> d6ca1163853739f25a419c58ee96d8d6e3fe6cab
       </div>
     </section>
   )
