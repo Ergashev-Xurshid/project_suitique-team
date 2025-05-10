@@ -5,7 +5,6 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 function Home() {
-<<<<<<< HEAD
   const {products , loadProducts} = useProductStore()
   useEffect(()=>{
     loadProducts()
@@ -13,7 +12,6 @@ function Home() {
   // api dai ma'lumotlar mana shu products da
   console.log(products);
     
-=======
   // const { products, loadProducts } = useProductStore();
   const [data, setData] = useState([]);
   const [images, setImage] = useState("");
@@ -53,7 +51,6 @@ function Home() {
     visible: { opacity: 1, y: 0 },
   };
 
->>>>>>> d6ca1163853739f25a419c58ee96d8d6e3fe6cab
   return (
     <div>
       <section className="relative h-screen flex items-center overflow-hidden mt-5">
