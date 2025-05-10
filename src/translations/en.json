@@ -60,5 +60,8 @@
   "Size": "Size",
   "Color": "Color",
   "Quantity": "Quantity",
-  "team.title": "Our Teams"
+  "team.title": "Our Teams",
+  "latestNews": "Latest News",
+  "latestNewsDesc": "Stay updated with our latest news and insights.",
+  "errorLoadingNews": "Error loading news. Please try again later."
 }

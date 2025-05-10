@@ -3,7 +3,7 @@ import { fetchSize } from '../services/services'
 
 const useSizeStore = create((set) => ({
   size: [],
-  error:"",
+  error: "",
   loadSize: async () => {
     try {
       const res = await fetchSize()

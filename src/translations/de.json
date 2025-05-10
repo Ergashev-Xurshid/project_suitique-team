@@ -60,5 +60,8 @@
   "Size": "Größe",
   "Color": "Farbe",
   "Quantity": "Menge",
-  "team.title": "Unser Team"
+  "team.title": "Unser Team",
+  "latestNews": "Neueste Nachrichten",
+  "latestNewsDesc": "Bleiben Sie auf dem Laufenden mit unseren aktuellen Nachrichten und Einblicken.",
+  "errorLoadingNews": "Fehler beim Laden der Nachrichten. Bitte versuchen Sie es später erneut."
 }
