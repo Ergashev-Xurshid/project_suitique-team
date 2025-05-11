@@ -99,25 +99,25 @@ const About = () => {
           <h2 className="text-3xl font-light mb-10 text-center">{t("values.title")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            <div className="text-center space-y-4 p-6 transition-all hover:bg-teal-200/10 rounded-lg">
-              <div className="w-12 h-12 mx-auto bg-teal-200 rounded-full flex items-center justify-center">
-                <BsCircle className="w-6 h-6 text-teal-800" />
+            <div className="text-center space-y-4 p-6 transition-all hover:bg-gray-300/10 rounded-lg">
+              <div className="w-12 h-12 mx-auto bg-gray-200 rounded-full flex items-center justify-center">
+                <BsCircle className="w-6 h-6 text-gray-950" />
               </div>
               <h3 className="text-lg font-medium">{t("values.quality")}</h3>
               <p className="text-muted-foreground">{t("values.quality.text")}</p>
             </div>
 
-            <div className="text-center space-y-4 p-6 transition-all hover:bg-teal-200/10 rounded-lg">
-              <div className="w-12 h-12 mx-auto bg-teal-200 rounded-full flex items-center justify-center">
-                <BsCircle className="w-6 h-6 text-teal-800" />
+            <div className="text-center space-y-4 p-6 transition-all hover:bg-gray-300/10 rounded-lg">
+              <div className="w-12 h-12 mx-auto bg-gray-200 rounded-full flex items-center justify-center">
+                <BsCircle className="w-6 h-6 text-gray-950" />
               </div>
               <h3 className="text-lg font-medium">{t("values.sustainability")}</h3>
               <p className="text-muted-foreground">{t("values.sustainability.text")}</p>
             </div>
 
-            <div className="text-center space-y-4 p-6 transition-all hover:bg-teal-200/10 rounded-lg">
-              <div className="w-12 h-12 mx-auto bg-teal-200 rounded-full flex items-center justify-center">
-                <BsCircle className="w-6 h-6 text-teal-800" />
+            <div className="text-center space-y-4 p-6 transition-all hover:bg-gray-300/10 rounded-lg">
+              <div className="w-12 h-12 mx-auto bg-gray-200 rounded-full flex items-center justify-center">
+                <BsCircle className="w-6 h-6 text-gray-950" />
               </div>
               <h3 className="text-lg font-medium">{t("values.ethical")}</h3>
               <p className="text-muted-foreground">{t("values.ethical.text")}</p>
