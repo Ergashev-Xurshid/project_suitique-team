@@ -29,7 +29,6 @@ const CartPage = () => {
       </div>
       {cart && cart.map((item, i) => (
         <div key={i} className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          <div className="lg:col-span-2 space-y-6">
             <div className="lg:col-span-2 space-y-6">
               <div className="flex gap-4 border border-border rounded-lg p-4 animate-fade-in">
                 <div className="w-26 h-32  bg-secondary/20 rounded-md overflow-hidden">
@@ -57,7 +56,6 @@ const CartPage = () => {
                 </div>
               </div>
             </div>
-          </div>
           <div className="lg:col-span-1">
             <div className="bg-secondary p-6 rounded-lg">
               <h2 className="text-lg font-medium mb-4">Order Summary</h2>
