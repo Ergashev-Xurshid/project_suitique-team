@@ -1,7 +1,7 @@
 // stores/cartStore.js
 import { create } from 'zustand';
 
-export const useCartStore = create((set, get) => ({
+const useCartStore = create((set, get) => ({
   cart: [],
 
   addToCart: (product) => {
@@ -49,3 +49,4 @@ export const useCartStore = create((set, get) => ({
     set({ cart: updatedCart });
   }
 }));
+export default useCartStore

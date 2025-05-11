@@ -1,11 +1,13 @@
-import { useCartStore } from '../stores/cartStore';
+import useCartStore from "../../store/cartStore";
+
 
 const CartPage = () => {
   const cart = useCartStore((state) => state.cart);
   const increaseQuantity = useCartStore((state) => state.increaseQuantity);
   const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
-
+  console.log(cart);
+  
   return (
     <div className="p-4">
       <h1 className="text-xl font-bold mb-4">Savat</h1>
