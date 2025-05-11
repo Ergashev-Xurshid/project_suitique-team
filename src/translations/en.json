@@ -63,5 +63,13 @@
   "team.title": "Our Teams",
   "latestNews": "Latest News",
   "latestNewsDesc": "Stay updated with our latest news and insights.",
-  "errorLoadingNews": "Error loading news. Please try again later."
+  "errorLoadingNews": "Error loading news. Please try again later.",
+  "homeTitle": "Premium Menswear",
+  "homeQuality": "Quality fabrics. Perfect fit. Timeless style.",
+  "exploreCollection": "Explore Collection",
+  "featuredProducts": "Featured Products",
+  "featuredProductsSubtitle": "Discover our carefully selected collection of premium menswear, crafted with the finest materials and attention to detail.",
+  "viewAllProducts": "View All Products",
+  "newArrivals": "New Arrivals",
+  "sale": "Sale"
 }

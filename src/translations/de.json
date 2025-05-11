@@ -63,5 +63,13 @@
   "team.title": "Unser Team",
   "latestNews": "Neueste Nachrichten",
   "latestNewsDesc": "Bleiben Sie auf dem Laufenden mit unseren aktuellen Nachrichten und Einblicken.",
-  "errorLoadingNews": "Fehler beim Laden der Nachrichten. Bitte versuchen Sie es später erneut."
+  "errorLoadingNews": "Fehler beim Laden der Nachrichten. Bitte versuchen Sie es später erneut.",
+  "homeTitle": "Premium-Herrenbekleidung",
+  "homeQuality": "Qualitätsstoffe. Perfekte Passform. Zeitloser Stil.",
+  "exploreCollection": "Sammlung anzeigen",
+  "featuredProducts": "Empfohlene Produkte",
+  "featuredProductsSubtitle": "Entdecken Sie unsere sorgfältig ausgewählte Kollektion hochwertiger Herrenbekleidung, die aus den besten Materialien und mit Liebe zum Detail gefertigt wurde.",
+  "viewAllProducts": "Alle Produkte ansehen",
+  "newArrivals": "Neuheiten",
+  "sale": "Verkauf"
 }
