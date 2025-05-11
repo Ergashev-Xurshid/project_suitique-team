@@ -8,7 +8,7 @@ const CartPage = () => {
   const increaseQuantity = useCartStore((state) => state.increaseQuantity);
   const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
-  console.log(cart);
+
   
   return (
     <div className="container mx-auto px-4 py-10 md:py-16">
@@ -44,13 +44,13 @@ const CartPage = () => {
                         <p>Цвета</p>
                       </div>
                     </div>
-                    <button></button>
+                    <button onClick={() => removeFromCart(item.id)} className="cursor-pointer">x</button>
                   </div>
                   <div className="flex justify-between items-end mt-4">
                     <div className="flex items-center">
-                      <button className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground border border-border rounded-l-md">-</button>
-                      <input type="number" className="w-10 h-8 text-center border-t border-b border-border"/>
-                      <button className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground border border-border rounded-r-md">+</button>
+                      <button onClick={() => decreaseQuantity(item.id)} className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground border border-border rounded-l-md">-</button>
+                      <span className="w-10 h-8 text-center border-t border-b border-border py-1">{item.quantity}</span>
+                      <button onClick={() => increaseQuantity(item.id)}  className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground border border-border rounded-r-md">+</button>
                     </div>
                     <div className="font-medium">$86</div>
                   </div>

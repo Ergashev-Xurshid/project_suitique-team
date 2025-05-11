@@ -6,6 +6,7 @@ import { FiShoppingBag } from "react-icons/fi";
 import { useTranslation } from 'react-i18next';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import useCartStore from '../store/cartStore';
 
 function Navbar() {
 
@@ -31,6 +32,9 @@ function Navbar() {
     once: true,    
   });
 }, []);
+
+
+  const cart = useCartStore((state) => state.cart);
 
   return (
     <section className='container  mx-auto px-10 flex items-center justify-between'>
@@ -78,8 +82,8 @@ function Navbar() {
           className='p-2 hover:text-gray-600 transition-colors relative'
           to="card">
           <FiShoppingBag />
-          <span className='absolute -top-1 -right-1 bg-black text-white rounded-full w-4 h-4 flex items-center justify-center text-xs'>
-            2
+          <span className='absolute -top-1 -right-1 bg-black text-white text-[10px]  rounded-full w-4 h-4 flex items-center justify-center text-xs'>
+            {cart.length}
           </span>
         </Link>
         <button
