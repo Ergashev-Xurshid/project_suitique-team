@@ -111,7 +111,9 @@ function ProductDetail() {
           <div>
             <h3 className="text-sm font-medium mb-2">{t("Color")}</h3>
             <div className="flex items-center space-x-1 mt-2">
-              <p className={`w-7 h-7 rounded-full bg-${data?.colors?.[0].color_en}-500 border hover:ring-2 hover:ring-black`}></p>
+              <p 
+                style={{ backgroundColor: data?.colors?.[0].color_en }}
+                className={`w-7 h-7 rounded-full  border `}></p>
             </div>
           </div>
           <div>
