@@ -1,5 +1,6 @@
-
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import image from '../../assets/nodata/noData.png';
 
 function Catalog() {
   const [categories, setCategories] = useState([]);
@@ -47,16 +48,22 @@ function Catalog() {
       );
     }
 
-    if (selectedSizes.length > 0) {
-      result = result.filter((p) =>
-        p.sizes?.some((s) => selectedSizes.includes(s.size))
-      );
-    }
-
     if (sortOption === 'priceLow') {
       result.sort((a, b) => a.price - b.price);
     } else if (sortOption === 'priceHigh') {
       result.sort((a, b) => b.price - a.price);
+    }
+
+    if (selectedSizes.length > 0) {
+      result = result.filter((p) =>
+        p.sizes?.some((s) => {
+          const sizeNum = parseInt(s.size);
+          return (
+            selectedSizes.includes('44 - 52') &&
+            [44, 46, 48, 50, 52].includes(sizeNum)
+          );
+        })
+      );
     }
 
     setFilteredProducts(result);
@@ -98,8 +105,8 @@ function Catalog() {
         </div>
       </div>
       <div className='bg-white'>
-        <div className=' container mx-auto flex gap-8 py-10'>
-          <div className='w-1/5'>
+        <div className='container mx-auto flex flex-col md:flex-row gap-8 px-10 py-10'>
+          <div className='hidden md:block w-full md:w-1/5'>
             <h3 className='text-lg font-semibold mb-4'>Categories</h3>
             <div className='flex flex-col gap-2'>
               <button
@@ -127,22 +134,23 @@ function Catalog() {
               ))}
             </div>
             <h3 className='text-xl font-semibold mt-6 mb-2'>Sizes</h3>
-            <div className='flex flex-wrap gap-2'>
-              {['44 - 52'].map((size) => (
-                <button
-                  key={size}
-                  className={`px-2 py-1 border rounded  text-sm cursor-pointer ${
-                    selectedSizes.includes(size)
-                      ? 'bg-black text-white'
-                      : 'bg-white'
-                  }`}
-                  onClick={() => handleSizeClick(size)}
-                >
-                  {size}
-                </button>
-              ))}
+            <div className='flex flex-wrap gap-2 '>
+              {[{ label: '44 - 52', range: [44, 46, 48, 50, 52] }].map(
+                (sizeObj) => (
+                  <button
+                    key={sizeObj.label}
+                    className={`px-3 py-1 border border-gray-100 rounded cursor-pointer ${
+                      selectedSizes.includes(sizeObj.label)
+                        ? 'bg-black text-white'
+                        : 'bg-white text-black'
+                    }`}
+                    onClick={() => handleSizeClick(sizeObj.label)}
+                  >
+                    {sizeObj.label}
+                  </button>
+                )
+              )}
             </div>
-
             <h3 className='text-md font-semibold mt-6 mb-2'>Colors</h3>
             <div className='flex flex-wrap gap-2 text-sm'>
               {['black', 'white', 'gray', 'blue', 'yellow', 'brown'].map(
@@ -165,7 +173,6 @@ function Catalog() {
                 )
               )}
             </div>
-
             <button
               onClick={clearFilters}
               className='mt-6 text-red-500 underline underline-offset-4 cursor-pointer'
@@ -174,7 +181,7 @@ function Catalog() {
             </button>
           </div>
 
-          <div className='w-3/4'>
+          <div className='w-3/4 m-auto'>
             <div className='flex items-center justify-between mb-8'>
               <div className='text-sm text-gray-600'>
                 Showing {filteredProducts.length} products
@@ -193,37 +200,55 @@ function Catalog() {
               </div>
             </div>
 
-            <div className='grid grid-cols-4 gap-8'>
-              {filteredProducts.map((p) => (
-                <div key={p.id} className='gap-2 mb-6 flex flex-col'>
+            <div className='w-full relative md grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8'>
+              {filteredProducts.length === 0 ? (
+                <div className='flex flex-col items-center justify-center absolute inset-0'>
                   <img
-                    src={`https://back.aoron.uz/${p.images[0]}`}
-                    alt={p.title_en}
-                    className=' w-full object-cover mb-2'
+                    src={image}
+                    alt='No data available'
+                    className='w-40 h-40 object-contain mb-4 '
                   />
-                  <div className='flex justify-between gap-1 text-sm'>
-                    <h4 className='font-semibold mb-1'>{p.title_en}</h4>
-                    <p className='text-gray-600 mb-1'>${p.price}</p>
-                  </div>
-                  <p className='text-sm text-gray-500 flex-grow mb-2 line-clamp-2'>
-                    {p.description_en}
-                  </p>
-                  {p.colors && p.colors.length > 0 && (
-                    <div>
-                      <div
-                        onClick={() =>
-                          handleInlineColorClick(p.colors[0].color_en)
-                        }
-                        className=' w-3 h-3 rounded-full cursor-pointer border-gray-100);'
-                        style={{
-                          backgroundColor: p.colors[0].color_en.toLowerCase(),
-                        }}
-                        title={`Filter by ${p.colors[0].color_en}`}
-                      ></div>
-                    </div>
-                  )}
+                  <p className='text-sm text-gray-500'>No data available</p>
                 </div>
-              ))}
+              ) : (
+                filteredProducts.map((p) => (
+                  <div
+                    key={p.id}
+                    className='w-[210px] gap-2 mb-6 flex flex-col relative group overflow-hidden cursor-pointer'
+                  >
+                    <Link to={`/productinfo/${p.id}`}>
+                      <div className='overflow-hidden'>
+                        <img
+                          src={`https://back.aoron.uz/${p.images[0]}`}
+                          alt={p.title_en}
+                          className=' w-full h-auto  mx-auto transform transition-transform duration-500 hover:scale-150'
+                        />
+                      </div>
+                    </Link>
+                    <div className='flex justify-between gap-1 text-sm'>
+                      <h4 className='font-semibold mb-1'>{p.title_en}</h4>
+                      <p className='text-gray-600 mb-1'>${p.price}</p>
+                    </div>
+                    <p className='text-sm text-gray-500 flex-grow mb-2 line-clamp-2'>
+                      {p.description_en}
+                    </p>
+                    {p.colors && p.colors.length > 0 && (
+                      <div>
+                        <div
+                          onClick={() =>
+                            handleInlineColorClick(p.colors[0].color_en)
+                          }
+                          className=' w-3 h-3 rounded-full cursor-pointer border-gray-100);'
+                          style={{
+                            backgroundColor: p.colors[0].color_en.toLowerCase(),
+                          }}
+                          title={`Filter by ${p.colors[0].color_en}`}
+                        ></div>
+                      </div>
+                    )}
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
