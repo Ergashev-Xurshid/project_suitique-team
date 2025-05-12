@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "react-phone-input-2/lib/style.css";
+import PhoneInput from "react-phone-input-2";
 import { MdEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
@@ -31,6 +33,10 @@ function Contact() {
       .then((item) => {
         if (item?.success) {
           console.log("Successfully posted");
+          setComments("");
+          setEmail("");
+          setName("");
+          setPhone_number("");
         } else {
           console.log("Error");
         }
@@ -112,12 +118,14 @@ function Contact() {
           </div>
           <div className="flex flex-col w-full">
             <label className="text-lg">{t("Catalog-form-phone-text")}</label>
-            <input
-              type="number"
-              className="border border-gray-300 p-3 rounded-md"
-              onChange={(e) => setPhone_number(e.target.value)}
-              required
+            <PhoneInput
+              country={"us"}
               value={phone_number}
+              onChange={(value) => setPhone_number(value)}
+              containerClass="w-full"
+              inputClass="!w-full !p-7 !pl-14 !pr-3 !text-base !rounded !border !border-gray-300 !bg-transparent"
+              buttonClass="!border-none"
+              required
             />
           </div>
           <div className="flex flex-col w-full">
