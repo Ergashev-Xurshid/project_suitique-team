@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import "react-phone-input-2/lib/style.css";
+import PhoneInput from "react-phone-input-2";
 import { MdEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
@@ -7,8 +9,44 @@ import { useTranslation } from "react-i18next";
 
 function Contact() {
   const { t, i18n } = useTranslation();
+  const [comments, setComments] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [phone_number, setPhone_number] = useState("");
+
+  const PostData = (e) => {
+    e.preventDefault();
+
+    fetch("https://back.aoron.uz/api/contact-form", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        comments: comments,
+        email: email,
+        name: name,
+        phone_number: phone_number,
+      }),
+    })
+      .then((res) => res.json())
+      .then((item) => {
+        if (item?.success) {
+          console.log("Successfully posted");
+          setComments("");
+          setEmail("");
+          setName("");
+          setPhone_number("");
+        } else {
+          console.log("Error");
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to post", err);
+      });
+  };
   return (
-    <div>
+    <div className="">
       <div className="text-center w-full py-22 px-10 bg-[#F4F4F5]">
         <p className="text-4xl font-light">{t("Catalog-Header-text1")}</p>
         <p className="text-lg text-gray-500 mt-4">
@@ -16,7 +54,7 @@ function Contact() {
         </p>
       </div>
       <div
-        className="container mx-auto grid grid-cols-2 justify-between m-20 max-xl:px-10 
+        className="container mx-auto grid grid-cols-2 justify-between m-20 px-10 
                 max-lg:flex max-lg:flex-col max-lg:justify-center max-lg:items-center"
       >
         <div className="flex flex-col gap-5 w-full max-lg:mb-10">
@@ -51,13 +89,19 @@ function Contact() {
           </div>
         </div>
 
-        <form className="flex flex-col justify-center gap-5 w-full">
+        <form
+          className="flex flex-col justify-center gap-5 w-full"
+          onSubmit={PostData}
+        >
           <p className="text-xl font-semibold">{t("Catalog-form-text2")}</p>
           <div className="flex gap-2 max-lg:flex-col">
             <div className="flex w-full flex-col">
               <label className="text-lg">{t("Catalog-form-name")}</label>
               <input
                 type="text"
+                onChange={(e) => setName(e.target.value)}
+                required
+                value={name}
                 className="border border-gray-300 p-3 rounded-md"
               />
             </div>
@@ -66,14 +110,22 @@ function Contact() {
               <input
                 type="email"
                 className="border border-gray-300 p-3 rounded-md"
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                value={email}
               />
             </div>
           </div>
           <div className="flex flex-col w-full">
             <label className="text-lg">{t("Catalog-form-phone-text")}</label>
-            <input
-              type="number"
-              className="border border-gray-300 p-3 rounded-md"
+            <PhoneInput
+              country={"us"}
+              value={phone_number}
+              onChange={(value) => setPhone_number(value)}
+              containerClass="w-full"
+              inputClass="!w-full !p-7 !pl-14 !pr-3 !text-base !rounded !border !border-gray-300 !bg-transparent"
+              buttonClass="!border-none"
+              required
             />
           </div>
           <div className="flex flex-col w-full">
@@ -81,9 +133,15 @@ function Contact() {
             <textarea
               type="number"
               className="border border-gray-300 p-3 rounded-md"
+              onChange={(e) => setComments(e.target.value)}
+              required
+              value={comments}
             />
           </div>
-          <button className="bg-black text-white text-md p-3 w-50 rounded-md cursor-pointer">
+          <button
+            type="submit"
+            className="bg-black text-white text-md p-3 w-50 rounded-md cursor-pointer"
+          >
             {t("Catalog-form-btn-text")}
           </button>
         </form>
