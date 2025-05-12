@@ -49,8 +49,6 @@ function ProductDetail() {
 
 
 
-
-
   //add cards 
   const {addToCart } = useCartStore()
 

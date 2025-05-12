@@ -82,7 +82,9 @@ const CartPage = () => {
                 <span>${totalPrice}</span>
               </div>
             </div>
-            <button className="w-full bg-black py-3 px-4 rounded-lg text-white hover:bg-black/90 cursor-pointer mb-4">Оформить заказ</button>
+            <Link to="check">
+              <button className="w-full bg-black py-3 px-4 rounded-lg text-white hover:bg-black/90 cursor-pointer mb-4">Оформить заказ</button>
+            </Link>
             <Link to={"/catalog"}  className="block w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors">Продолжить покупки</Link>
             <div className="mt-6 p-3 bg-accent rounded-md flex items-start space-x-2">
               <img src={danger} alt="danger" className="w-4 h-4" />
