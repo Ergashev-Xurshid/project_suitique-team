@@ -90,5 +90,15 @@
   "Catalog-q-1": "Wie finde ich meine Größe?",
   "Catalog-q-2": "Wie sind Ihre Rückgabebedingungen?",
   "Catalog-ans-1": "Unsere Größentabelle finden Sie auf jeder Produktseite. Bei Fragen wenden Sie sich gerne an unseren Kundenservice.",
-  "Catalog-ans-2": "Wir bieten ein 30-tägiges Rückgaberecht für ungetragene Artikel in der Originalverpackung. Weitere Informationen finden Sie auf unserer Seite „Rückgabe und Umtausch“."
+  "Catalog-ans-2": "Wir bieten ein 30-tägiges Rückgaberecht für ungetragene Artikel in der Originalverpackung. Weitere Informationen finden Sie auf unserer Seite „Rückgabe und Umtausch“.",
+  "Subtotal":"Zwischensumme",
+  "Total":"Gesamtsumme",
+  "order-btn":"Zur Kasse",
+  "order-shop":"Weiter einkaufen",
+  "order-danger":"Lieferdienst wird separat bezahlt..",
+  "card-modal-title":"Kontaktinformationen",
+  "Country":"Land",
+  "City":"Stadt",
+  "WhatsApp":"WhatsApp-Nummer",
+  "card-modal-btn":"Nachricht senden"
 }

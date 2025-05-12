@@ -22,7 +22,9 @@
     "react-icons": "^5.5.0",
     "react-phone-input-2": "^2.15.1",
     "react-router-dom": "^6.30.0",
+    "react-select": "^5.10.1",
     "tailwindcss": "^4.1.5",
+    "world-countries": "^5.1.0",
     "zustand": "^5.0.4"
   },
   "devDependencies": {

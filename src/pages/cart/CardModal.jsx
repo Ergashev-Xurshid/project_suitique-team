@@ -1,17 +1,89 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
-function CardModal() {
+import { useTranslation } from 'react-i18next';
+import { IoClose } from 'react-icons/io5';
+
+
+import Select from 'react-select';
+import countries from 'world-countries';
+
+const formattedCountries = countries.map((country) => ({
+  value: country.cca2,
+  label: `${country.name.common}`,
+}));
+
+const customStyles = {
+  control: (base) => ({
+    ...base,
+    padding: '2px 4px',
+    borderRadius: '6px',
+    borderColor: '#d1d5db',
+    boxShadow: 'none',
+    '&:hover': {
+      borderColor: '#3b82f6',
+    },
+  }),
+};
+
+
+
+function CardModal({setOpenModal}) {
+  const { t, i18n } = useTranslation()
+  const handleChange = (selectedOption) => {
+    console.log('Tanlangan davlat:', selectedOption);
+  };
+
+
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [phone_number, setPhone_number] = useState("");
+    const PostData = (e) => {
+    e.preventDefault();
+
+    fetch("https://back.aoron.uz/api/contact-form", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        comments: comments,
+        email: email,
+        name: name,
+        phone_number: phone_number,
+      }),
+    })
+      .then((res) => res.json())
+      .then((item) => {
+        if (item?.success) {
+          console.log("Successfully posted");
+          setComments("");
+          setEmail("");
+          setName("");
+          setPhone_number("");
+          setOpenModal(false)
+        } else {
+          console.log("Error");
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to post", err);
+      });
+  };
   return (
-    <div className='fixed inset-0 bg-black/60 flex justify-center items-center z-50 overflow-y-auto'>
-      <div className='relative bg-white p-6 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar'>
-        <button className='absolute top-2 right-2 text-white bg-red-500 px-2 py-[2px] cursor-pointer rounded-full'>x</button>
-        <form>
+    <div onClick={()=>setOpenModal(false)} className='fixed inset-0 bg-black/60 flex justify-center items-center z-99 overflow-y-auto'>
+      <div onClick={(e) => e.stopPropagation()} className='relative bg-white p-6 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar'>
+        <button onClick={()=>setOpenModal(false)} className='absolute top-2 right-2 text-white bg-red-500 px-2 py-2 cursor-pointer rounded-full'><IoClose /></button>
+        <form onSubmit={PostData}>
           <div className='space-y-4'>
-            <h3 className='text-xl font-bold mb-4'>Contact Information</h3>
+            <h3 className='text-xl font-bold mb-4'>{t("card-modal-title")}</h3>
             <div>
-              <label className='block text-sm font-medium'>Name</label>
-              <input type="text" className='w-full p-2 border border-gray-300 rounded mb-2' />
+              <label className='block text-sm font-medium'>{t("Catalog-form-name")}</label>
+              <input 
+                onChange={(e)=>setName(e.target.value)}
+                value={name}
+                type="text" 
+                className='w-full p-2 border border-gray-300 rounded mb-2' />
             </div>
             <div className="flex flex-col w-full">
               <label className="text-lg">{t("Catalog-form-phone-text")}</label>
@@ -26,16 +98,29 @@ function CardModal() {
               />
             </div>
             <div>
-              <label className='block text-sm font-medium'>Email</label>
-              <input type="email" className='w-full p-2 border border-gray-300 rounded mb-2' />
+              <label className='block text-sm font-medium'>{t("Catalog-form-email-text")}</label>
+              <input 
+                onChange={(e)=>setEmail(e.target.value)}
+                value={email}
+                type="email" 
+                className='w-full p-2 border border-gray-300 rounded mb-2' />
             </div>
-            //country
             <div>
-              <label className='block text-sm font-medium'>City</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t("Country")}</label>
+              <Select
+                options={formattedCountries}
+                onChange={handleChange}
+                placeholder="Please select"
+                styles={customStyles}
+                isSearchable
+              />
+            </div>
+            <div>
+              <label className='block text-sm font-medium'>{t("City")}</label>
               <input type="text" className='w-full p-2 border border-gray-300 rounded mb-2' />
             </div>
             <div className="flex flex-col w-full">
-              <label className="text-lg">what</label>
+              <label className="text-lg">{t("WhatsApp")}</label>
               <PhoneInput
                 country={"us"}
                 value={phone_number}
@@ -46,6 +131,7 @@ function CardModal() {
                 required
               />
             </div>
+            <button className='bg-black py-2 px-4 rounded-lg w-full mt-6 text-white cursor-pointer hover:bg-black/90'>{t("card-modal-btn")}</button>
           </div>
         </form>
       </div>

@@ -90,5 +90,15 @@
   "Catalog-q-1": "How do I find my size?",
   "Catalog-q-2": "What is your return policy?",
   "Catalog-ans-1": "You can refer to our size guide which is available on each product page. If you're still unsure, feel free to contact our customer support team for assistance.",
-  "Catalog-ans-2": "We offer a 30-day return policy for unworn items in their original packaging. Please visit our Returns & Exchanges page for more details."
+  "Catalog-ans-2": "We offer a 30-day return policy for unworn items in their original packaging. Please visit our Returns & Exchanges page for more details.",
+  "Subtotal":"Subtotal",
+  "Total":"Total",
+  "order-btn":"Checkout",
+  "order-shop":"Continue Shopping",
+  "order-danger":"Delivery service is paid separately.",
+  "card-modal-title":"Contact Information",
+  "Country":"Country",
+  "City":"City",
+  "WhatsApp":"WhatsApp Number",
+  "card-modal-btn":"Send Message"
 }
