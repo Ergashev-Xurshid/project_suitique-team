@@ -18,7 +18,6 @@ import Contact from './pages/contact/Contact'
 import Terms from './pages/termService/Terms'
 import ProductDetail from './pages/productDetals/ProductDetail'
 import CartPage from './pages/cart/CartPage'
-import CardModal from './pages/cart/CardModal'
 
 
 
@@ -36,9 +35,7 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/product/:id' element={<ProductDetail />} />
         <Route path='/terms' element={<Terms />} />
-        <Route path='/card' element={<CartPage />} >
-          <Route path="/card/check" element={<CardModal />} />
-        </Route>
+        <Route path='/card' element={<CartPage />} />
       </Route>
     )
   );
