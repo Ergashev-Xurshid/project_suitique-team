@@ -4,6 +4,7 @@ import useProductStore from "../../store/productStore";
 import { IoIosArrowUp , IoIosArrowDown} from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import useCartStore from "../../store/cartStore";
+import { toast } from "react-toastify";
 
 
 
@@ -123,7 +124,10 @@ function ProductDetail() {
             </div>
           </div>
           <button 
-            onClick={() => addToCart(data)}
+            onClick={() =>{ 
+              addToCart(data)
+              toast.success(t("add-card"))
+            }}
             className="w-full bg-black hover:bg-black/90 cursor-pointer py-4 rounded-[12px] text-white">{t("add-card-btn")}
           </button>
           <div className="border-t border-border pt-4 space-y-4">

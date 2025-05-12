@@ -79,13 +79,15 @@ function Home() {
             {t("homeQuality")}
           </motion.p>
 
-          <motion.button
-            variants={childVariants}
-            className="bg-white p-3 sm:p-4 text-black rounded-xl cursor-pointer flex items-center gap-2 group text-sm sm:text-base"
-          >
-            <p>{t("exploreCollection")}</p>
-            <FaArrowRight className="transform transition-transform duration-300 group-hover:translate-x-2" />
-          </motion.button>
+          <Link to="/catalog">
+            <motion.button
+              variants={childVariants}
+              className="bg-white p-2 sm:p-4 text-black rounded-xl cursor-pointer flex items-center gap-2 group text-sm sm:text-base"
+            >
+              <p>{t("exploreCollection")}</p>
+              <FaArrowRight className="transform transition-transform duration-300 group-hover:translate-x-2" />
+            </motion.button>
+          </Link>
         </motion.div>
       </section>
       <div className="container mx-auto px-4 sm:px-8 lg:px-12">
@@ -158,7 +160,7 @@ function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 my-10">
           {data.slice(0, 4).map((element, index) => (
             <Link key={index} to={`/product/${element.id}`}>
-              <div  className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2">
                 <div className="relative group overflow-hidden cursor-pointer">
                   {element.images?.length > 0 && (
                     <img

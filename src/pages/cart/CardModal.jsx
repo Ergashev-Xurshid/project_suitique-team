@@ -7,6 +7,7 @@ import { IoClose } from 'react-icons/io5';
 
 import Select from 'react-select';
 import countries from 'world-countries';
+import { toast } from 'react-toastify';
 
 const formattedCountries = countries.map((country) => ({
   value: country.cca2,
@@ -56,7 +57,7 @@ function CardModal({setOpenModal}) {
       .then((res) => res.json())
       .then((item) => {
         if (item?.success) {
-          console.log("Successfully posted");
+          toast.success("Successfully posted");
           setComments("");
           setEmail("");
           setName("");
@@ -67,13 +68,15 @@ function CardModal({setOpenModal}) {
         }
       })
       .catch((err) => {
-        console.error("Failed to post", err);
+        toast.error("Failed to post", err);
       });
   };
   return (
     <div onClick={()=>setOpenModal(false)} className='fixed inset-0 bg-black/60 flex justify-center items-center z-99 overflow-y-auto'>
       <div onClick={(e) => e.stopPropagation()} className='relative bg-white p-6 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar'>
-        <button onClick={()=>setOpenModal(false)} className='absolute top-2 right-2 text-white bg-red-500 px-2 py-2 cursor-pointer rounded-full'><IoClose /></button>
+        <button onClick={()=>{
+          setOpenModal(false)
+          }} className='absolute top-2 right-2 text-white bg-red-500 px-2 py-2 cursor-pointer rounded-full'><IoClose /></button>
         <form onSubmit={PostData}>
           <div className='space-y-4'>
             <h3 className='text-xl font-bold mb-4'>{t("card-modal-title")}</h3>
