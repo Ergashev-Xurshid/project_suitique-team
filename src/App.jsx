@@ -30,7 +30,6 @@ function App() {
       <Route path='/' element={<Rootlayout />}>
         <Route index element={<Home />} />
         <Route path='/catalog' element={<Catalog />} />
-        <Route path='/productinfo/:id' element={<Productinfo />} />
         <Route path='/about' element={<About />} />
         <Route path='/news' element={<News />} />
         <Route path='/news/:id' element={<NewsDetail />} />

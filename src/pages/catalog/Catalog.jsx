@@ -216,7 +216,7 @@ function Catalog() {
                     key={p.id}
                     className='w-[210px] gap-2 mb-6 flex flex-col relative group overflow-hidden cursor-pointer'
                   >
-                    <Link to={`/productinfo/${p.id}`}>
+                    <Link to={`/product/${p.id}`}>
                       <div className='overflow-hidden'>
                         <img
                           src={`https://back.aoron.uz/${p.images[0]}`}
