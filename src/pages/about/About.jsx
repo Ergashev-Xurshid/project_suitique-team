@@ -9,7 +9,7 @@ const About = () => {
   // Team Section
   const { t, i18n } = useTranslation();
   const { teamSection, loadTeamSection, error } = useTeamSection();
-  const baseURL = "https://back.aoron.uz/";
+  const baseURL = "https://testaoron.limsa.uz/";
 
   useEffect(() => {
     loadTeamSection();
@@ -143,7 +143,7 @@ const About = () => {
               return (
                 <div className="text-center space-y-3" key={member.id}>
                   <div className="aspect-square overflow-hidden rounded-full max-w-[200px] mx-auto">
-                    <img  
+                    <img
                       loading="lazy"
                       src={baseURL + member.image}
                       className="w-full h-full object-cover"
@@ -151,7 +151,7 @@ const About = () => {
                     />
                   </div>
                   <h3 className="font-medium text-lg">{member.full_name}</h3>
-                  <p className="text-muted-foreground">{position}</p>
+                  <p className="text-neutral-400">{position}</p>
                 </div>
               );
             })}

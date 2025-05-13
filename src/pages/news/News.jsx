@@ -6,7 +6,7 @@ import useNews from "../../store/news";
 const News = () => {
   const { t, i18n } = useTranslation();
   const { news, loadNews, error } = useNews();
-  const baseURL = "https://back.aoron.uz/";
+  const baseURL = "https://testaoron.limsa.uz/";
 
   useEffect(() => {
     loadNews();
