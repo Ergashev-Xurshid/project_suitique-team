@@ -48,7 +48,10 @@ const CartPage = () => {
             {cart.map((item, i) => (
               <div key={i} className="flex gap-4 border border-border rounded-lg p-4 animate-fade-in">
                 <div className="w-26 h-32  bg-secondary/20 rounded-md overflow-hidden">
-                  <img src={`https://back.aoron.uz/${item.images[0]}`} alt="img" />
+                  <img
+                    loading="lazy"  
+                    src={`https://back.aoron.uz/${item.images[0]}`} 
+                    alt="img" />
                 </div>
                 <div className="flex-grow sm:ml-4">
                   <div className="flex justify-between">
