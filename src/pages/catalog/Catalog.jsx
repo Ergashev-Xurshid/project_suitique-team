@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import image from '../../assets/nodata/noData.png';
 
 function Catalog() {
   const [categories, setCategories] = useState([]);
@@ -204,8 +203,9 @@ function Catalog() {
               {filteredProducts.length === 0 ? (
                 <div className='flex flex-col items-center justify-center absolute inset-0'>
                   <img
-                    src={image}
+                    src="/public/images/noData.png"
                     alt='No data available'
+                    loading='lazy'
                     className='w-40 h-40 object-contain mb-4 '
                   />
                   <p className='text-sm text-gray-500'>No data available</p>
@@ -221,6 +221,7 @@ function Catalog() {
                         <img
                           src={`https://back.aoron.uz/${p.images[0]}`}
                           alt={p.title_en}
+                          loading='lazy'
                           className=' w-full h-auto  mx-auto transform transition-transform duration-500 hover:scale-150'
                         />
                       </div>

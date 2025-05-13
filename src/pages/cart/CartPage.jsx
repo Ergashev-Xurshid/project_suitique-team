@@ -2,7 +2,6 @@ import { FiShoppingBag } from "react-icons/fi";
 import useCartStore from "../../store/cartStore";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { danger } from "../../assets";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
 import CardModal from "./CardModal";
@@ -89,7 +88,11 @@ const CartPage = () => {
                 <button onClick={()=>setOpenModal(true)} className="w-full bg-black py-3 px-4 rounded-lg text-white hover:bg-black/90 cursor-pointer mb-4">{t("order-btn")}</button>
               <Link to={"/catalog"} className="block w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors">{t("order-shop")}</Link>
               <div className="mt-6 p-3 bg-accent rounded-md flex items-start space-x-2">
-                <img src={danger} alt="danger" className="w-4 h-4" />
+                <img 
+                  src="/public/images/danger_icon.png" 
+                  loading="lazy" 
+                  alt="danger" 
+                  className="w-4 h-4" />
                 <p className="text-xs text-muted-foreground">{t("order-danger")}</p>
               </div>
             </div>

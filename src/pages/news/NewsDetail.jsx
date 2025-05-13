@@ -36,8 +36,9 @@ const NewsDetail = () => {
 
             <h1 className="text-3xl font-bold mb-4">{currentNews[`title_${i18n.language}`]}</h1>
             <img
+                loading='lazy'
                 src={`https://back.aoron.uz/${currentNews.image}`}
-                alt=""
+                alt="news"
                 className="w-full rounded-xl mb-6"
             />
             <p className="text-gray-700 whitespace-pre-line">

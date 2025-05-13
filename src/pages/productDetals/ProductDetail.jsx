@@ -75,6 +75,7 @@ function ProductDetail() {
           <div className="aspect-square  overflow-hidden ">
             {data.images && data.images.length > 0 && (
               <img
+                loading="lazy"
                 src={`https://back.aoron.uz/${changeImg ? data.images[0] : data.images[1]}`}
                 alt="Asosiy rasm"
                 className="w-full h-full object-cover object-center transition-all duration-300"
@@ -85,6 +86,7 @@ function ProductDetail() {
             <button onClick={() => setChengeImg(true)} className={`aspect-square w-20  p-1 transition-all ${changeImg ? "ring-2" : ""}  ring-primary`}>
               {data.images && data.images.length > 0 && (
                 <img
+                  loading="lazy"
                   src={`https://back.aoron.uz/${data.images[0]}`}
                   alt="Asosiy rasm"
                   className="w-full h-full object-cover object-center transition-all duration-300"
@@ -94,6 +96,7 @@ function ProductDetail() {
             <button onClick={() => setChengeImg(false)} className={`aspect-square w-20  p-1 transition-all ${changeImg ? "" : "ring-2"}  ring-primary`}>
               {data.images && data.images.length > 0 && (
                 <img
+                  loading="lazy"
                   src={`https://back.aoron.uz/${data.images[1]}`}
                   alt="Asosiy rasm"
                   className="w-full h-full object-cover object-center transition-all duration-300"
@@ -186,6 +189,7 @@ function ProductDetail() {
                 <div className="relative group overflow-hidden cursor-pointer">
                   {element.images?.length > 0 && (
                     <img
+                      loading="lazy"
                       src={`https://back.aoron.uz/${element.images[0]}`}
                       alt="image"
                       className="w-full h-auto transform transition-transform duration-500 group-hover:scale-150"

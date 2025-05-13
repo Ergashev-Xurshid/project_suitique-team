@@ -143,7 +143,8 @@ const About = () => {
               return (
                 <div className="text-center space-y-3" key={member.id}>
                   <div className="aspect-square overflow-hidden rounded-full max-w-[200px] mx-auto">
-                    <img
+                    <img  
+                      loading="lazy"
                       src={baseURL + member.image}
                       className="w-full h-full object-cover"
                       alt={member.full_name}

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import backgoundImage from "../../assets/homePage background image/Background.png";
 import { useTranslation } from "react-i18next";
 
 import { motion } from "framer-motion";
@@ -47,9 +46,10 @@ function Home() {
     <div>
       <section className="relative h-screen flex items-center overflow-hidden mt-5">
         <img
-          src={backgoundImage}
+          src="/public/images/home_bg-img.jpg"
           className="absolute inset-0 w-full h-full object-cover"
           alt="Background"
+          loading="lazy"
         />
 
         <motion.div
@@ -104,6 +104,7 @@ function Home() {
                 <div className="relative group overflow-hidden cursor-pointer">
                   {element.images?.length > 0 && (
                     <img
+                      loading="lazy"
                       src={`https://back.aoron.uz/${element.images[0]}`}
                       alt="image"
                       className="w-full h-auto transform transition-transform duration-500 group-hover:scale-150"
@@ -164,6 +165,7 @@ function Home() {
                 <div className="relative group overflow-hidden cursor-pointer">
                   {element.images?.length > 0 && (
                     <img
+                      loading="lazy"
                       src={`https://back.aoron.uz/${element.images[0]}`}
                       alt="image"
                       className="w-full h-auto transform transition-transform duration-500 group-hover:scale-150"

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { logo } from '../assets'
 import { menuItem } from '../utils/consttanta'
 import { FiShoppingBag } from "react-icons/fi";
 import { useTranslation } from 'react-i18next';
@@ -39,7 +38,11 @@ function Navbar() {
   return (
     <section className='container  mx-auto px-10 flex items-center justify-between'>
       <Link to={"/"} className='cursor-pointer'>
-        <img className='w-[60px]' src={logo} alt="logo" />
+        <img 
+          className='w-[60px]' 
+          src="/public/images/logo.png" 
+          loading='lazy' 
+          alt="logo" />
       </Link>
       <nav className='hidden md:flex items-center space-x-8'>
         {menuItem.map((item, index) => (

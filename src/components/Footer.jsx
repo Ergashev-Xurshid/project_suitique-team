@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { logo } from '../assets'
 import { IoLogoInstagram } from "react-icons/io";
 import { SlSocialFacebook } from "react-icons/sl";
 import { LuTwitter } from "react-icons/lu";
@@ -50,7 +49,11 @@ function Footer() {
     <section className='container mx-auto px-10'>
       <div className='grid grid-cols-1 md:grid-cols-4 gap-8 mb-12'>
         <div className='space-y-4'>
-          <img src={logo} alt="logo" className='w-20 mb-4' />
+          <img 
+          loading='lazy'
+            src="/public/images/logo.png" 
+            alt="logo" 
+            className='w-20 mb-4' />
           <p className='text-sm text-gray-500'>
             {t("footer_logo-text")}
           </p>
