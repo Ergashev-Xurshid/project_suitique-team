@@ -190,7 +190,7 @@ function ProductDetail() {
                   {element.images?.length > 0 && (
                     <img
                       loading="lazy"
-                      src={`https://testaoron.limsa.uz${element.images[0]}`}
+                      src={`https://testaoron.limsa.uz/${element.images[0]}`}
                       alt="image"
                       className="w-full h-auto transform transition-transform duration-500 group-hover:scale-150"
                     />
