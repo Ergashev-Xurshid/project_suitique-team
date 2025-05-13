@@ -203,7 +203,7 @@ function Catalog() {
               {filteredProducts.length === 0 ? (
                 <div className='flex flex-col items-center justify-center absolute inset-0'>
                   <img
-                    src="/public/images/noData.png"
+                    src="/images/noData.png"
                     alt='No data available'
                     loading='lazy'
                     className='w-40 h-40 object-contain mb-4 '

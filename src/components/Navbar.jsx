@@ -40,7 +40,7 @@ function Navbar() {
       <Link to={"/"} className='cursor-pointer'>
         <img 
           className='w-[60px]' 
-          src="/public/images/logo.png" 
+          src="/images/logo.png" 
           loading='lazy' 
           alt="logo" />
       </Link>

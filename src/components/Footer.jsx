@@ -51,7 +51,7 @@ function Footer() {
         <div className='space-y-4'>
           <img 
           loading='lazy'
-            src="/public/images/logo.png" 
+            src="/images/logo.png" 
             alt="logo" 
             className='w-20 mb-4' />
           <p className='text-sm text-gray-500'>
