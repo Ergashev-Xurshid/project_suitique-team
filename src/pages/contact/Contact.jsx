@@ -17,7 +17,7 @@ function Contact() {
   const PostData = (e) => {
     e.preventDefault();
 
-    fetch("https://back.aoron.uz/api/contact-form", {
+    fetch("https://testaoron.limsa.uz/api/contact-form", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -46,7 +46,7 @@ function Contact() {
       });
   };
   return (
-    <div className="">
+    <div>
       <div className="text-center w-full py-22 px-10 bg-[#F4F4F5]">
         <p className="text-4xl font-light">{t("Catalog-Header-text1")}</p>
         <p className="text-lg text-gray-500 mt-4">
@@ -54,7 +54,7 @@ function Contact() {
         </p>
       </div>
       <div
-        className="container mx-auto grid grid-cols-2 justify-between m-20 px-10 
+        className="w-full max-w-7xl mx-auto grid grid-cols-2 justify-between m-20 px-10 
                 max-lg:flex max-lg:flex-col max-lg:justify-center max-lg:items-center"
       >
         <div className="flex flex-col gap-5 w-full max-lg:mb-10">
@@ -90,7 +90,7 @@ function Contact() {
         </div>
 
         <form
-          className="flex flex-col justify-center gap-5 w-full"
+          className="w-full flex flex-col justify-center gap-5"
           onSubmit={PostData}
         >
           <p className="text-xl font-semibold">{t("Catalog-form-text2")}</p>
@@ -147,21 +147,19 @@ function Contact() {
         </form>
       </div>
       <div className="bg-[#F4F4F5] py-20">
-        <div className="container mx-auto">
+        <div className="max-w-7xl mx-auto px-4">
           <p className="text-3xl font-light text-center">
             {t("FrequentlyAskedQ")}
           </p>
-          <div className="flex justify-evenly mt-10 items-center max-lg:flex-col max-lg:gap-10">
-            <div className="bg-white rounded-xl p-6 w-110 flex flex-col items-start">
+          <div className="flex flex-wrap justify-center gap-6 mt-10">
+            <div className="bg-white rounded-xl p-6 w-full max-w-md flex flex-col items-start">
               <p className="text-lg font-semibold">{t("Catalog-q-1")}</p>
-              <br />
-              <p className="text-gray-500">{t("Catalog-ans-1")}</p>
+              <p className="text-gray-500 mt-2">{t("Catalog-ans-1")}</p>
             </div>
 
-            <div className="bg-white rounded-xl p-6 w-110 flex flex-col items-start">
+            <div className="bg-white rounded-xl p-6 w-full max-w-md flex flex-col items-start">
               <p className="text-lg font-semibold">{t("Catalog-q-2")}</p>
-              <br />
-              <p className="text-gray-500">{t("Catalog-ans-2")}</p>
+              <p className="text-gray-500 mt-2">{t("Catalog-ans-2")}</p>
             </div>
           </div>
         </div>
