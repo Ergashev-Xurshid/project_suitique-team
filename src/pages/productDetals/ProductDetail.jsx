@@ -35,7 +35,6 @@ function ProductDetail() {
       .then((data) => setData(data?.data));
   }, [id]);
 
-  console.log(data);
   
 
   const [changeImg, setChengeImg] = useState(true)
@@ -47,11 +46,27 @@ function ProductDetail() {
 
   //open product detals
   const [openDetal , setOpenDetal]=useState(true)
-
-
-
   //add cards 
   const {addToCart } = useCartStore()
+
+  const [quantity, setQuantity] = useState(1);
+
+    const handleDecrease = () => {
+    if (quantity > 1) {
+      setQuantity(prev => prev - 1);
+    }
+  };
+
+  const handleIncrease = () => {
+    setQuantity(prev => prev + 1);
+  };
+
+  const handleInputChange = (e) => {
+    const value = parseInt(e.target.value);
+    if (!isNaN(value) && value > 0) {
+      setQuantity(value);
+    }
+  };
 
   return (
     <section className="container mx-auto px-10 py-10 md:py-16">
@@ -117,22 +132,31 @@ function ProductDetail() {
           </div>
           <div>
             <h3 className="text-sm font-medium mb-2">{t("Quantity")}</h3>
-            <div className="flex items-center border border-input rounded-md w-32">
-              <button className="w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground disabled:opacity-50">-</button>
-              <input type="text" defaultValue={1} className="w-12 h-10 text-center border-none focus:outline-none" />
-              <button className="w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground">+</button>
+            <div className="flex items-center border border-input overflow-hidden rounded-md w-32">
+            <button 
+              onClick={handleDecrease} 
+              className="hover:bg-gray-100 cursor-pointer w-10 h-10 flex items-center justify-center  disabled:opacity-50">-</button>
+            <input 
+                onChange={handleInputChange} 
+                type="text" 
+                value={quantity} 
+                min={1}  
+                className="w-12 h-10 text-center border-none focus:outline-none" />
+            <button 
+              onClick={handleIncrease} 
+              className="hover:bg-gray-100 cursor-pointer w-10 h-10 flex items-center justify-center ">+</button>
             </div>
           </div>
           <button 
             onClick={() =>{ 
-              addToCart(data)
+              addToCart(data , quantity)
               toast.success(t("add-card"))
             }}
             className="w-full bg-black hover:bg-black/90 cursor-pointer py-4 rounded-[12px] text-white">{t("add-card-btn")}
           </button>
           <div className="border-t border-border pt-4 space-y-4">
             <div>
-              <button onClick={()=>setOpenDetal(!openDetal)} className="flex justify-between items-center w-full py-2">
+              <button onClick={()=>setOpenDetal(!openDetal)} className=" cursor-pointer flex justify-between items-center w-full py-2">
                 <h3 className="font-medium">{t("Product-Details")}</h3>
                 {openDetal ? 
                 <IoIosArrowUp /> : <IoIosArrowDown />}

@@ -64,9 +64,9 @@ const CartPage = () => {
                   </div>
                   <div className="flex justify-between items-end mt-4">
                     <div className="flex items-center">
-                      <button onClick={() => decreaseQuantity(item.id)} className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground border border-border rounded-l-md">-</button>
+                      <button onClick={() => decreaseQuantity(item.id)} className="cursor-pointer w-8 h-8 flex items-center justify-center text-black hover:bg-gray-100 border border-border rounded-l-md">-</button>
                       <span className="w-10 h-8 text-center border-t border-b border-border py-1">{item.quantity}</span>
-                      <button onClick={() => increaseQuantity(item.id)} className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground border border-border rounded-r-md">+</button>
+                      <button onClick={() => increaseQuantity(item.id)} className="cursor-pointer w-8 h-8 flex items-center justify-center text-black hover:bg-gray-100 border border-border rounded-r-md">+</button>
                     </div>
                     <div className="font-medium">${item?.price}.00</div>
                   </div>
