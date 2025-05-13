@@ -50,7 +50,7 @@ const CartPage = () => {
                 <div className="w-26 h-32  bg-secondary/20 rounded-md overflow-hidden">
                   <img
                     loading="lazy"  
-                    src={`https://back.aoron.uz/${item.images[0]}`} 
+                    src={`https://testaoron.limsa.uz/${item.images[0]}`} 
                     alt="img" />
                 </div>
                 <div className="flex-grow sm:ml-4">
@@ -92,7 +92,7 @@ const CartPage = () => {
               <Link to={"/catalog"} className="block w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors">{t("order-shop")}</Link>
               <div className="mt-6 p-3 bg-accent rounded-md flex items-start space-x-2">
                 <img 
-                  src="/public/images/danger_icon.png" 
+                  src="/images/danger_icon.png" 
                   loading="lazy" 
                   alt="danger" 
                   className="w-4 h-4" />

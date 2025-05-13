@@ -11,7 +11,7 @@ const NewsDetail = () => {
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const res = await fetch(`https://back.aoron.uz/api/news/${id}`);
+                const res = await fetch(`https://testaoron.limsa.uz/api/news/${id}`);
                 const json = await res.json();
                 setCurrentNews(json.data); // API direkt { data: {...} } 
             } catch (error) {

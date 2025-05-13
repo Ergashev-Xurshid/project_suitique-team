@@ -20,7 +20,7 @@ function Footer() {
   const [email , setEmail]=useState("")
   const sendEmail = async () => {  
     try {
-      const res = await fetch('https://back.aoron.uz/api/email/send', {
+      const res = await fetch('https://testaoron.limsa.uz/api/email-bot/send-message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

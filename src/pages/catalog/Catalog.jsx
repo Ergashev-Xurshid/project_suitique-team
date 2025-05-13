@@ -14,7 +14,7 @@ function Catalog() {
   const [sortOption, setSortOption] = useState('featured');
 
   useEffect(() => {
-    fetch('https://back.aoron.uz/api/category')
+    fetch('https://testaoron.limsa.uz/api/category')
       .then((res) => res.json())
       .then((result) => {
         if (Array.isArray(result.data)) {
@@ -22,7 +22,7 @@ function Catalog() {
         }
       });
 
-    fetch('https://back.aoron.uz/api/product')
+    fetch('https://testaoron.limsa.uz/api/product?page=1&limit=10&min_sell=2')
       .then((res) => res.json())
       .then((result) => {
         if (Array.isArray(result.data?.products)) {
@@ -224,7 +224,7 @@ function Catalog() {
                     <Link to={`/product/${p.id}`}>
                       <div className='overflow-hidden'>
                         <img
-                          src={`https://back.aoron.uz/${p.images[0]}`}
+                          src={`https://testaoron.limsa.uz/${p.images[0]}`}
                           alt={p.title_en}
                           loading='lazy'
                           className=' w-full h-auto  mx-auto transform transition-transform duration-500 hover:scale-150'

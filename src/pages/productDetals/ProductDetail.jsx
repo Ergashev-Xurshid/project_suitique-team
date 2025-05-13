@@ -30,7 +30,7 @@ function ProductDetail() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(`https://back.aoron.uz/api/product/${id}`)
+    fetch(`https://testaoron.limsa.uz/api/product/${id}`)
       .then((res) => res.json())
       .then((data) => setData(data?.data));
   }, [id]);
@@ -76,7 +76,7 @@ function ProductDetail() {
             {data.images && data.images.length > 0 && (
               <img
                 loading="lazy"
-                src={`https://back.aoron.uz/${changeImg ? data.images[0] : data.images[1]}`}
+                src={`https://testaoron.limsa.uz/${changeImg ? data.images[0] : data.images[1]}`}
                 alt="Asosiy rasm"
                 className="w-full h-full object-cover object-center transition-all duration-300"
               />
@@ -87,7 +87,7 @@ function ProductDetail() {
               {data.images && data.images.length > 0 && (
                 <img
                   loading="lazy"
-                  src={`https://back.aoron.uz/${data.images[0]}`}
+                  src={`https://testaoron.limsa.uz/${data.images[0]}`}
                   alt="Asosiy rasm"
                   className="w-full h-full object-cover object-center transition-all duration-300"
                 />
@@ -97,7 +97,7 @@ function ProductDetail() {
               {data.images && data.images.length > 0 && (
                 <img
                   loading="lazy"
-                  src={`https://back.aoron.uz/${data.images[1]}`}
+                  src={`https://testaoron.limsa.uz/${data.images[1]}`}
                   alt="Asosiy rasm"
                   className="w-full h-full object-cover object-center transition-all duration-300"
                 />
@@ -190,7 +190,7 @@ function ProductDetail() {
                   {element.images?.length > 0 && (
                     <img
                       loading="lazy"
-                      src={`https://back.aoron.uz/${element.images[0]}`}
+                      src={`https://testaoron.limsa.uz${element.images[0]}`}
                       alt="image"
                       className="w-full h-auto transform transition-transform duration-500 group-hover:scale-150"
                     />

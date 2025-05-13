@@ -10,7 +10,7 @@ function Home() {
   const [data, setData] = useState([]);
 
   const getData = () => {
-    fetch("https://back.aoron.uz/api/product")
+    fetch("https://testaoron.limsa.uz/api/product?page=1&limit=10&min_sell=2")
       .then((response) => response.json())
       .then((item) => {
         setData(item?.data.products);
@@ -22,6 +22,9 @@ function Home() {
   useEffect(() => {
     getData();
   }, []);
+
+  console.log(data);
+  
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -105,7 +108,7 @@ function Home() {
                   {element.images?.length > 0 && (
                     <img
                       loading="lazy"
-                      src={`https://back.aoron.uz/${element.images[0]}`}
+                      src={`https://testaoron.limsa.uz/${element.images[0]}`}
                       alt="image"
                       className="w-full h-auto transform transition-transform duration-500 group-hover:scale-150"
                     />
@@ -166,7 +169,7 @@ function Home() {
                   {element.images?.length > 0 && (
                     <img
                       loading="lazy"
-                      src={`https://back.aoron.uz/${element.images[0]}`}
+                      src={`https://testaoron.limsa.uz/${element.images[0]}`}
                       alt="image"
                       className="w-full h-auto transform transition-transform duration-500 group-hover:scale-150"
                     />
