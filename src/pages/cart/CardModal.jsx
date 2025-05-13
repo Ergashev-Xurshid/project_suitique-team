@@ -39,6 +39,7 @@ function CardModal({setOpenModal}) {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [phone_number, setPhone_number] = useState("");
+    const [comments, setComments] = useState("");
     const PostData = (e) => {
     e.preventDefault();
 
@@ -120,7 +121,11 @@ function CardModal({setOpenModal}) {
             </div>
             <div>
               <label className='block text-sm font-medium'>{t("City")}</label>
-              <input type="text" className='w-full p-2 border border-gray-300 rounded mb-2' />
+              <input 
+                onChange={(e)=>setComments(e.target.value)}
+                value={comments}
+                type="text" 
+                className='w-full p-2 border border-gray-300 rounded mb-2' />
             </div>
             <div className="flex flex-col w-full">
               <label className="text-lg">{t("WhatsApp")}</label>
