@@ -3,7 +3,7 @@ import useCartStore from "../../store/cartStore";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { IoClose } from "react-icons/io5";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CardModal from "./CardModal";
 
 
@@ -61,11 +61,11 @@ const CartPage = () => {
                     <div>
                       <h3 className="font-medium">{item?.[`title_${currentLang}`]}</h3>
                       <div className="text-sm text-muted-foreground mt-1 space-y-1">
-                        <p>{t("Size")} :{item?.sizes?.[0]?.size}</p>
-                        <p>{t("Color")} : {item?.colors?.[0].color_en}</p>
+                        <p>{t("Size")} : {item?.size?.size || "-"}</p>
+                        <p>{t("Color")} : {item?.color?.color_en || "-"}</p>
                       </div>
                     </div>
-                    <button onClick={() => removeFromCart(item.id)} className="cursor-pointer"><IoClose /></button>
+                    <button onClick={() => removeFromCart(item.cartId)} className="cursor-pointer"><IoClose /></button>
                   </div>
                   <div className="flex justify-between items-end mt-4">
                     <div className="flex items-center">

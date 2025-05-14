@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useProductStore from "../../store/productStore";
-import { IoIosArrowUp , IoIosArrowDown} from "react-icons/io";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import useCartStore from "../../store/cartStore";
 import { toast } from "react-toastify";
@@ -10,13 +10,13 @@ import { toast } from "react-toastify";
 
 function ProductDetail() {
 
-  
+
 
   //language
-  const { t , i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const currentLang = i18n.language;
-  
-  
+
+
   //product api
   const { products, loadProducts } = useProductStore()
 
@@ -30,28 +30,36 @@ function ProductDetail() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(`https://testaoron.limsa.uz/api/product/${id}`)
-      .then((res) => res.json())
-      .then((data) => setData(data?.data));
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`https://testaoron.limsa.uz/api/product/${id}`);
+        const result = await res.json();
+        setData(result?.data);
+      } catch (error) {
+        console.error("Xatolik:", error);
+      }
+    };
+
+    fetchData();
   }, [id]);
 
-  
+
 
   const [changeImg, setChengeImg] = useState(true)
 
   // sahifani tepaga olib chiqadi
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo(0, 0);
-  },[id])
+  }, [id])
 
   //open product detals
-  const [openDetal , setOpenDetal]=useState(true)
+  const [openDetal, setOpenDetal] = useState(true)
   //add cards 
-  const {addToCart } = useCartStore()
+  const { addToCart } = useCartStore()
 
   const [quantity, setQuantity] = useState(1);
 
-    const handleDecrease = () => {
+  const handleDecrease = () => {
     if (quantity > 1) {
       setQuantity(prev => prev - 1);
     }
@@ -67,6 +75,20 @@ function ProductDetail() {
       setQuantity(value);
     }
   };
+
+
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
+
+  const handleAddToCart = () => {
+    const sizeToSend = selectedSize || data?.sizes?.[0];
+    const colorToSend = selectedColor || data?.colors?.[0];
+
+    addToCart(data, quantity, sizeToSend, colorToSend);
+    toast.success(t("add-card"));
+  };
+
+
 
   return (
     <section className="container mx-auto px-10 py-10 md:py-16">
@@ -93,16 +115,6 @@ function ProductDetail() {
                 />
               )}
             </button>
-            <button onClick={() => setChengeImg(false)} className={`aspect-square w-20  p-1 transition-all ${changeImg ? "" : "ring-2"}  ring-primary`}>
-              {data.images && data.images.length > 0 && (
-                <img
-                  loading="lazy"
-                  src={`https://testaoron.limsa.uz/${data.images[1]}`}
-                  alt="Asosiy rasm"
-                  className="w-full h-full object-cover object-center transition-all duration-300"
-                />
-              )}
-            </button>
           </div>
         </div>
         <div className="space-y-6">
@@ -117,52 +129,63 @@ function ProductDetail() {
           </p>
           <div>
             <h3 className="text-sm font-medium mb-1">{t("Material")}</h3>
-            <p className="text-sm text-gray-500">Вискоза: {data?.materials?.Вискоза}%</p>
+            {Array.isArray(data?.materials) && data.materials.map((mat, i) => (
+              <p key={i}>{mat.name} {mat.value}%</p>
+            ))}
           </div>
           <div>
             <h3 className="text-sm font-medium mb-1">{t("Size")}</h3>
             <div className="flex flex-wrap gap-2">
-              <p className="min-w-[3rem] p-2 text-sm border rounded-md transition-all hover:border-black/50 hover:bg-black hover:text-white">{data?.sizes?.[0]?.size}</p>
+              {(data?.sizes || []).map((item, ind) => (
+                <button
+                  onClick={() => setSelectedSize(item)}
+                  className={`py-2 px-4 rounded-lg border cursor-pointer hover:bg-black/10 ${selectedSize?.id === item.id ? "bg-black text-white" : ""
+                    }`} key={ind}>{item?.size}</button>
+              ))}
             </div>
           </div>
           <div>
             <h3 className="text-sm font-medium mb-2">{t("Color")}</h3>
             <div className="flex items-center space-x-1 mt-2">
-              <p 
-                style={{ backgroundColor: data?.colors?.[0].color_en }}
-                className={`w-7 h-7 rounded-full  border `}></p>
+              {(data?.colors || []).map((item, ind) => (
+                <span
+                  key={ind}
+                  onClick={() => setSelectedColor(item)}
+                  style={{ backgroundColor: item.color_en }}
+                  className={`w-7 h-7    inline-block cursor-pointer rounded-full   ${selectedColor?.id === item.id ? "border-black border-3" : ""}`} >
+                </span>
+              ))}
             </div>
           </div>
           <div>
             <h3 className="text-sm font-medium mb-2">{t("Quantity")}</h3>
             <div className="flex items-center border border-input overflow-hidden rounded-md w-32">
-            <button 
-              onClick={handleDecrease} 
-              className="hover:bg-gray-100 cursor-pointer w-10 h-10 flex items-center justify-center  disabled:opacity-50">-</button>
-            <input 
-                onChange={handleInputChange} 
-                type="text" 
-                value={quantity} 
-                min={1}  
+              <button
+                onClick={handleDecrease}
+                className="hover:bg-gray-100 cursor-pointer w-10 h-10 flex items-center justify-center  disabled:opacity-50">-</button>
+              <input
+                onChange={handleInputChange}
+                type="text"
+                value={quantity}
+                min={1}
                 className="w-12 h-10 text-center border-none focus:outline-none" />
-            <button 
-              onClick={handleIncrease} 
-              className="hover:bg-gray-100 cursor-pointer w-10 h-10 flex items-center justify-center ">+</button>
+              <button
+                onClick={handleIncrease}
+                className="hover:bg-gray-100 cursor-pointer w-10 h-10 flex items-center justify-center ">+</button>
             </div>
           </div>
-          <button 
-            onClick={() =>{ 
-              addToCart(data , quantity)
-              toast.success(t("add-card"))
-            }}
-            className="w-full bg-black hover:bg-black/90 cursor-pointer py-4 rounded-[12px] text-white">{t("add-card-btn")}
-          </button>
+          <Link to="/">
+            <button
+              onClick={() => { handleAddToCart() }}
+              className="w-full bg-black hover:bg-black/90 cursor-pointer py-4 rounded-[12px] text-white">{t("add-card-btn")}
+            </button>
+          </Link>
           <div className="border-t border-border pt-4 space-y-4">
             <div>
-              <button onClick={()=>setOpenDetal(!openDetal)} className=" cursor-pointer flex justify-between items-center w-full py-2">
+              <button onClick={() => setOpenDetal(!openDetal)} className=" cursor-pointer flex justify-between items-center w-full py-2">
                 <h3 className="font-medium">{t("Product-Details")}</h3>
-                {openDetal ? 
-                <IoIosArrowUp /> : <IoIosArrowDown />}
+                {openDetal ?
+                  <IoIosArrowUp /> : <IoIosArrowDown />}
               </button>
               {/* open modal */}
               {openDetal && <div className="py-3 text-sm text-muted-foreground animate-accordion-down">
@@ -185,7 +208,7 @@ function ProductDetail() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 my-10">
           {products.slice(0, 4).map((element, index) => (
             <Link key={index} to={`/product/${element.id}`}>
-              <div  className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2">
                 <div className="relative group overflow-hidden cursor-pointer">
                   {element.images?.length > 0 && (
                     <img

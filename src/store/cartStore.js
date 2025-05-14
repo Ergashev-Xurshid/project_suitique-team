@@ -7,21 +7,43 @@ const useCartStore = create(
       cart: [],
 
       // Mahsulotni qo‘shish, quantity bilan
-      addToCart: (product, quantity = 1) => {
+      addToCart: (product, quantity = 1, size = null, color = null) => {
         const cart = get().cart;
-        const existing = cart.find(item => item.id === product.id);
+
+        // ID + sizeID + colorID orqali tekshirish
+        const existing = cart.find(item =>
+          item.id === product.id &&
+          item.size?.id === size?.id &&
+          item.color?.id === color?.id
+        );
 
         if (existing) {
+          // mavjud bo‘lsa, quantityni oshirish
           const updatedCart = cart.map(item =>
-            item.id === product.id
+            item.id === product.id &&
+              item.size?.id === size?.id &&
+              item.color?.id === color?.id
               ? { ...item, quantity: item.quantity + quantity }
               : item
           );
           set({ cart: updatedCart });
         } else {
-          set({ cart: [...cart, { ...product, quantity }] });
+          // yangisini qo‘shish
+          set({
+            cart: [
+              ...cart,
+              {
+                ...product,
+                quantity,
+                size,
+                color,
+                cartId: `${product.id}-${size?.id || "noSize"}-${color?.id || "noColor"}` // unique id
+              },
+            ],
+          });
         }
       },
+
 
       // Mahsulot sonini 1 taga oshirish
       increaseQuantity: (productId) => {
@@ -47,9 +69,9 @@ const useCartStore = create(
       },
 
       // Mahsulotni butunlay olib tashlash
-      removeFromCart: (productId) => {
+      removeFromCart: (cartId) => {
         const cart = get().cart;
-        const updatedCart = cart.filter(item => item.id !== productId);
+        const updatedCart = cart.filter(item => item.cartId !== cartId);
         set({ cart: updatedCart });
       }
     }),

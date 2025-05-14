@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
 import { useTranslation } from 'react-i18next';
@@ -31,7 +31,7 @@ function CardModal({ setOpenModal }) {
       .then((res) => res.json())
       .then((item) => {
         if (item?.success) {
-          toast.success("Successfully posted");
+          toast.success("Our operators will call you within 24 hours!");
           setComments("");
           setEmail("");
           setName("");
