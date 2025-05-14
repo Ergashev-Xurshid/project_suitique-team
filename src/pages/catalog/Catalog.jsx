@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Link, useLocation } from 'react-router-dom';
 
 function Catalog() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { t, i18n } = useTranslation();
 
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedColors, setSelectedColors] = useState([]);
-  const [selectedSizes, setSelectedSizes] = useState([]);
+  const [sizes, setSizes] = useState(null);
   const [sortOption, setSortOption] = useState('featured');
+  const [selectedSize, setSelectedSize] = useState(null);
 
   useEffect(() => {
     fetch('https://testaoron.limsa.uz/api/category')
@@ -20,16 +22,29 @@ function Catalog() {
         if (Array.isArray(result.data)) {
           setCategories(result.data);
         }
-      });
+      })
+      .finally(() => setLoading(false));
 
+    setLoading(true);
     fetch('https://testaoron.limsa.uz/api/product?page=1&limit=10&min_sell=2')
       .then((res) => res.json())
       .then((result) => {
         if (Array.isArray(result.data?.products)) {
+          const productSizes = {};
+
           setProducts(result.data.products);
-          console.log(result.data.products[0].images);
+          console.log(result.data.products);
+
+          result.data.products.forEach((product) => {
+            product.sizes.forEach((size) => {
+              productSizes[size.size] = size;
+            });
+          });
+
+          setSizes(productSizes);
 
           setFilteredProducts(result.data.products);
+          setLoading(false);
         } else {
           console.error('Unexpected product format:', result);
         }
@@ -55,20 +70,27 @@ function Catalog() {
       result.sort((a, b) => b.price - a.price);
     }
 
-    if (selectedSizes.length > 0) {
-      result = result.filter((p) =>
-        p.sizes?.some((s) => {
-          const sizeNum = parseInt(s.size);
-          return (
-            selectedSizes.includes('44 - 52') &&
-            [44, 46, 48, 50, 52].includes(sizeNum)
-          );
-        })
-      );
-    }
-
     setFilteredProducts(result);
-  }, [selectedCategory, selectedColors, selectedSizes, products, sortOption]);
+  }, [selectedCategory, selectedColors, products, sortOption]);
+
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+
+  useEffect(() => {
+    const urlCategory = query.get('category');
+    if (urlCategory && categories.length > 0) {
+      const matchedCategory = categories.find((cat) =>
+        [cat.name_en, cat.name_ru, cat.name_de].includes(urlCategory)
+      );
+      if (matchedCategory) {
+        setSelectedCategory(matchedCategory.id);
+      } else {
+        setSelectedCategory(null);
+      }
+    } else {
+      setSelectedCategory(null);
+    }
+  }, [location.search, categories]);
 
   const handleColorClick = (color) => {
     setSelectedColors((prev) =>
@@ -76,16 +98,34 @@ function Catalog() {
     );
   };
 
-  const handleSizeClick = (size) => {
-    setSelectedSizes((prev) =>
-      prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size]
-    );
+  const handleSizeClick = (sizeId) => {
+    setSelectedSize(sizeId);
+
+    setLoading(true);
+    setProducts([]);
+
+    fetch(
+      `https://testaoron.limsa.uz/api/product?page=1&limit=10&min_sell=2${
+        sizeId ? '&sizes_id=' + sizeId : ''
+      }`
+    )
+      .then((res) => res.json())
+      .then((result) => {
+        if (Array.isArray(result.data?.products)) {
+          setProducts(result.data.products);
+
+          setFilteredProducts(result.data.products);
+          setLoading(false);
+        } else {
+          console.error('Unexpected product format:', result);
+        }
+      });
   };
 
   const clearFilters = () => {
     setSelectedCategory(null);
     setSelectedColors([]);
-    setSelectedSizes([]);
+    handleSizeClick(null);
     sortOption(null);
   };
 
@@ -93,12 +133,10 @@ function Catalog() {
     handleColorClick(color.toLowerCase());
   };
 
-
-
   // sahifani tepaga olib chiqadi
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [])
+  }, []);
 
   return (
     <>
@@ -117,48 +155,43 @@ function Catalog() {
           <div className='hidden md:block w-full md:w-1/5'>
             <h3 className='text-lg font-semibold mb-4'>{t('Categories')}</h3>
             <div className='flex flex-col gap-2'>
-              <button
-                className={`text-sm py-1 px-3 rounded cursor-pointer ${selectedCategory === null
-                    ? 'bg-black text-left text-white'
-                    : ' text-gray-700 text-left'
-                  }`}
-                onClick={() => setSelectedCategory(null)}
-              >
-                {t('viewAllProducts')}
-              </button>
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setSelectedCategory(cat.id)}
-                  className={`py-1 px-3 rounded text-left text-sm text-gray-700 cursor-pointer ${selectedCategory === cat.id
-                      ? 'bg-black text-white'
-                      : 'text-left'
-                    }`}
-                >
-                  {i18n.language === 'ru'
-                    ? cat.name_ru
-                    : i18n.language === 'de'
-                      ? cat.name_de
-                      : cat.name_en}
-                </button>
-              ))}
+              {categories &&
+                categories
+                  .sort((a, b) => (a.name_en < b.name_en ? -1 : 1))
+                  .map((cat) => (
+                    <button
+                      key={cat.id}
+                      onClick={() => setSelectedCategory(cat.id)}
+                      className={`py-1 px-3 rounded text-left text-sm text-gray-700 cursor-pointer ${
+                        selectedCategory === cat.id
+                          ? 'bg-black text-white'
+                          : 'text-left'
+                      }`}
+                    >
+                      {i18n.language === 'ru'
+                        ? cat.name_ru
+                        : i18n.language === 'de'
+                        ? cat.name_de
+                        : cat.name_en}
+                    </button>
+                  ))}
             </div>
             <h3 className='text-xl font-semibold mt-6 mb-2'>{t('Size')}</h3>
             <div className='flex flex-wrap gap-2 '>
-              {[{ label: '44 - 52', range: [44, 46, 48, 50, 52] }].map(
-                (sizeObj) => (
+              {sizes &&
+                Object.values(sizes).map((size) => (
                   <button
-                    key={sizeObj.label}
-                    className={`px-3 py-1 border border-gray-100 rounded cursor-pointer ${selectedSizes.includes(sizeObj.label)
+                    key={size.id}
+                    className={`px-3 py-1 border border-gray-100 rounded cursor-pointer text-sm ${
+                      selectedSize === size.id
                         ? 'bg-black text-white'
                         : 'bg-white text-black'
-                      }`}
-                    onClick={() => handleSizeClick(sizeObj.label)}
+                    }`}
+                    onClick={() => handleSizeClick(size.id)}
                   >
-                    {sizeObj.label}
+                    {size.size}
                   </button>
-                )
-              )}
+                ))}
             </div>
             <h3 className='text-md font-semibold mt-6 mb-2'>{t('Color')}</h3>{' '}
             <div className='flex flex-wrap gap-2 text-sm'>
@@ -166,10 +199,11 @@ function Catalog() {
                 (color) => (
                   <button
                     key={color}
-                    className={`flex items-center gap-1 px-2 py-1 border border-gray-100 rounded ${selectedColors.includes(color)
+                    className={`flex items-center gap-1 px-2 py-1 border border-gray-100 rounded ${
+                      selectedColors.includes(color)
                         ? 'border-gray-300'
                         : 'border-black'
-                      }`}
+                    }`}
                     onClick={() => handleColorClick(color)}
                   >
                     <span
@@ -189,7 +223,7 @@ function Catalog() {
             </button>
           </div>
 
-          <div className='w-full px-4 sm:px-6 md:px-10 lg:w-3/4 mx-auto'>
+          <div className='w-full px-4 sm:px-6 md:px-10 lg:w-3/4 mx-auto gap-8 '>
             <div className='flex items-center justify-between mb-8'>
               <div className='text-sm text-gray-600'>
                 {t('Showing')} {filteredProducts.length} {t('products')}
@@ -208,9 +242,11 @@ function Catalog() {
               </div>
             </div>
 
-            <div className='w-full relative md grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8'>
-              {filteredProducts.length === 0 ? (
-                <div className='flex flex-col items-center justify-center absolute inset-0 top-50'>
+            {loading && <div>Loading...</div>}
+
+            {filteredProducts.length === 0 && (
+              <div className='w-full h-full flex justify-center items-center'>
+                <div className='h-50'>
                   <img
                     src='/images/noData.png'
                     alt='No data available'
@@ -219,7 +255,11 @@ function Catalog() {
                   />
                   <p className='text-sm text-gray-500'>No data available</p>
                 </div>
-              ) : (
+              </div>
+            )}
+
+            <div className='w-full relative md grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8'>
+              {filteredProducts.length > 0 &&
                 filteredProducts.map((p) => (
                   <div
                     key={p.id}
@@ -257,8 +297,7 @@ function Catalog() {
                       </div>
                     )}
                   </div>
-                ))
-              )}
+                ))}
             </div>
           </div>
         </div>
