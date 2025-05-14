@@ -14,7 +14,10 @@ const About = () => {
   useEffect(() => {
     loadTeamSection();
   }, []);
-
+  // sahifani tepaga olib chiqadi
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
   return (
     <>
       <div className="container mx-auto px-4 max-w-4xl mt-20">

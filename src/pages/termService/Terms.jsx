@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Terms = () => {
 
   const handleGoBack = () => {
     window.history.back();
   };
-
+  // sahifani tepaga olib chiqadi
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
   return (
     <div className="px-8 py-4 mb-4 mt-12 bg-white rounded-lg shadow-md max-w-3xl mx-auto">
       <h2 className="text-3xl font-semibold text-center mb-6">Terms of Service</h2>

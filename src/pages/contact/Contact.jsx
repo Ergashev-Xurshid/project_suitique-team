@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
 import { MdEmail } from "react-icons/md";
@@ -45,6 +45,11 @@ function Contact() {
         console.error("Failed to post", err);
       });
   };
+
+  // sahifani tepaga olib chiqadi
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
   return (
     <div>
       <div className="text-center w-full py-22 px-10 bg-[#F4F4F5]">

@@ -46,7 +46,10 @@ function CardModal({ setOpenModal }) {
         console.error(err);
       });
   };
-
+  // sahifani tepaga olib chiqadi
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
   return (
     <div
       onClick={() => setOpenModal(false)}

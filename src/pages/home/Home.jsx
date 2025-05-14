@@ -6,7 +6,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [data, setData] = useState([]);
 
   const getData = () => {
@@ -22,9 +22,11 @@ function Home() {
   useEffect(() => {
     getData();
   }, []);
+  // sahifani tepaga olib chiqadi
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
-  console.log(data);
-  
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },

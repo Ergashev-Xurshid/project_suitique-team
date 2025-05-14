@@ -13,7 +13,10 @@ const News = () => {
   }, []);
 
   const currentLang = i18n.language; // Aktif dil
-
+  // sahifani tepaga olib chiqadi
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
   return (
     <div className="bg-[#f4f4f4] py-20">
       <div className="max-w-7xl mx-auto px-4">

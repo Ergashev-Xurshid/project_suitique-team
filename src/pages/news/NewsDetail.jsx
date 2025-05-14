@@ -4,6 +4,13 @@ import { useTranslation } from 'react-i18next';
 
 
 const NewsDetail = () => {
+
+    // sahifani tepaga olib chiqadi
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
+
     const { id } = useParams();
     const { i18n } = useTranslation();
     const [currentNews, setCurrentNews] = useState(null);

@@ -92,6 +92,14 @@ function Catalog() {
   const handleInlineColorClick = (color) => {
     handleColorClick(color.toLowerCase());
   };
+
+
+
+  // sahifani tepaga olib chiqadi
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
   return (
     <>
       <div className='w-full mt-3 '>
@@ -110,11 +118,10 @@ function Catalog() {
             <h3 className='text-lg font-semibold mb-4'>{t('Categories')}</h3>
             <div className='flex flex-col gap-2'>
               <button
-                className={`text-sm py-1 px-3 rounded cursor-pointer ${
-                  selectedCategory === null
+                className={`text-sm py-1 px-3 rounded cursor-pointer ${selectedCategory === null
                     ? 'bg-black text-left text-white'
                     : ' text-gray-700 text-left'
-                }`}
+                  }`}
                 onClick={() => setSelectedCategory(null)}
               >
                 {t('viewAllProducts')}
@@ -123,17 +130,16 @@ function Catalog() {
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`py-1 px-3 rounded text-left text-sm text-gray-700 cursor-pointer ${
-                    selectedCategory === cat.id
+                  className={`py-1 px-3 rounded text-left text-sm text-gray-700 cursor-pointer ${selectedCategory === cat.id
                       ? 'bg-black text-white'
                       : 'text-left'
-                  }`}
+                    }`}
                 >
                   {i18n.language === 'ru'
                     ? cat.name_ru
                     : i18n.language === 'de'
-                    ? cat.name_de
-                    : cat.name_en}
+                      ? cat.name_de
+                      : cat.name_en}
                 </button>
               ))}
             </div>
@@ -143,11 +149,10 @@ function Catalog() {
                 (sizeObj) => (
                   <button
                     key={sizeObj.label}
-                    className={`px-3 py-1 border border-gray-100 rounded cursor-pointer ${
-                      selectedSizes.includes(sizeObj.label)
+                    className={`px-3 py-1 border border-gray-100 rounded cursor-pointer ${selectedSizes.includes(sizeObj.label)
                         ? 'bg-black text-white'
                         : 'bg-white text-black'
-                    }`}
+                      }`}
                     onClick={() => handleSizeClick(sizeObj.label)}
                   >
                     {sizeObj.label}
@@ -161,11 +166,10 @@ function Catalog() {
                 (color) => (
                   <button
                     key={color}
-                    className={`flex items-center gap-1 px-2 py-1 border border-gray-100 rounded ${
-                      selectedColors.includes(color)
+                    className={`flex items-center gap-1 px-2 py-1 border border-gray-100 rounded ${selectedColors.includes(color)
                         ? 'border-gray-300'
                         : 'border-black'
-                    }`}
+                      }`}
                     onClick={() => handleColorClick(color)}
                   >
                     <span

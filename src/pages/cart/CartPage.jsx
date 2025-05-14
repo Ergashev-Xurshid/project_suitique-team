@@ -8,7 +8,10 @@ import CardModal from "./CardModal";
 
 
 const CartPage = () => {
-
+  // sahifani tepaga olib chiqadi
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   //language
   const { t, i18n } = useTranslation()
@@ -49,8 +52,8 @@ const CartPage = () => {
               <div key={i} className="flex gap-4 border border-border rounded-lg p-4 animate-fade-in">
                 <div className="w-26 h-32  bg-secondary/20 rounded-md overflow-hidden">
                   <img
-                    loading="lazy"  
-                    src={`https://testaoron.limsa.uz/${item.images[0]}`} 
+                    loading="lazy"
+                    src={`https://testaoron.limsa.uz/${item.images[0]}`}
                     alt="img" />
                 </div>
                 <div className="flex-grow sm:ml-4">
@@ -88,13 +91,13 @@ const CartPage = () => {
                   <span>${totalPrice}</span>
                 </div>
               </div>
-                <button onClick={()=>setOpenModal(true)} className="w-full bg-black py-3 px-4 rounded-lg text-white hover:bg-black/90 cursor-pointer mb-4">{t("order-btn")}</button>
+              <button onClick={() => setOpenModal(true)} className="w-full bg-black py-3 px-4 rounded-lg text-white hover:bg-black/90 cursor-pointer mb-4">{t("order-btn")}</button>
               <Link to={"/catalog"} className="block w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors">{t("order-shop")}</Link>
               <div className="mt-6 p-3 bg-accent rounded-md flex items-start space-x-2">
-                <img 
-                  src="/images/danger_icon.png" 
-                  loading="lazy" 
-                  alt="danger" 
+                <img
+                  src="/images/danger_icon.png"
+                  loading="lazy"
+                  alt="danger"
                   className="w-4 h-4" />
                 <p className="text-xs text-muted-foreground">{t("order-danger")}</p>
               </div>
@@ -102,7 +105,7 @@ const CartPage = () => {
           </div>
         </div> : ""}
       </div>
-       {openModal && <CardModal setOpenModal={setOpenModal}/>}       
+      {openModal && <CardModal setOpenModal={setOpenModal} />}
     </>
   );
 };
