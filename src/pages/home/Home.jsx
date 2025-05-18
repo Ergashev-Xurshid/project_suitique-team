@@ -51,7 +51,7 @@ function Home() {
     <div>
       <section className="relative h-screen flex items-center overflow-hidden mt-5">
         <img
-          src="/images/home_bg-img.jpg"
+          src="/images/home-st.webp"
           className="absolute inset-0 w-full h-full object-cover"
           alt="Background"
           loading="lazy"
