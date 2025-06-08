@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 function Home() {
   const { t } = useTranslation();
@@ -48,7 +49,37 @@ function Home() {
   };
 
   return (
-    <div>
+    <>
+      <Helmet>
+        {/* SEO Title */}
+        <title>Suitique | Zamonaviy kiyimlar va aksessuarlar do'koni - Onlayn xarid qiling</title>
+
+        {/* Meta Description */}
+        <meta
+          name="description"
+          content="Suitique - eng yangi kolleksiyalar, moda kiyimlar, erkaklar va ayollar uchun zamonaviy kiyimlar, aksessuarlar va boshqalar. Hozir xarid qiling va moda dunyosidan orqada qolmang!"
+        />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Suitique | Zamonaviy kiyimlar va aksessuarlar do'koni" />
+        <meta
+          property="og:description"
+          content="Suitique - eng yangi moda kolleksiyalarini onlayn xarid qiling. Eng sifatli va zamonaviy kiyimlar sizni kutmoqda!"
+        />
+        <meta property="og:image" content="https://suitique.uz/images/home_bg-img.jpg" />
+        <meta property="og:url" content="https://suitique.uz/" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Suitique | Zamonaviy kiyimlar va aksessuarlar do'koni" />
+        <meta
+          name="twitter:description"
+          content="Suitique - eng yangi moda kolleksiyalarini onlayn xarid qiling. Eng sifatli va zamonaviy kiyimlar sizni kutmoqda!"
+        />
+        <meta name="twitter:image" content="https://suitique.uz/images/images/home_bg-img.jpg" />
+      </Helmet>
+
       <section className="relative h-screen flex items-center overflow-hidden mt-5">
         <img
           src="/images/home-st.webp"
@@ -219,7 +250,7 @@ function Home() {
           </Link>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

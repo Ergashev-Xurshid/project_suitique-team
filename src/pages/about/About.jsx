@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { BsCircle } from "react-icons/bs";
 import useTeamSection from "../../store/teamSection";
+import { Helmet } from "react-helmet";
 
 
 const About = () => {
@@ -20,6 +21,22 @@ const About = () => {
   }, [])
   return (
     <>
+      <Helmet>
+        <title>Suitique | Biz haqimizda</title>
+        <meta
+          name="description"
+          content="Suitique haqida ma'lumot. Bizning maqsadimiz, tariximiz va jamoamiz bilan tanishing."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Suitique | Biz haqimizda" />
+        <meta
+          property="og:description"
+          content="Suitique haqida ma'lumot. Bizning maqsadimiz, tariximiz va jamoamiz bilan tanishing."
+        />
+        <meta property="og:image" content="https://suitique.uz/images/your-og-image.jpg" />
+        <meta property="og:url" content="https://suitique.uz/about" />
+      </Helmet>
+
       <div className="container mx-auto px-4 max-w-4xl mt-20">
         <div className="rounded-2xl shadow-lg p-8 md:p-12 space-y-10 bg-white text-neutral-900">
           {/* About */}

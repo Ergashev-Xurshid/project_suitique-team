@@ -6,6 +6,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
 
 function Contact() {
   const { t, i18n } = useTranslation();
@@ -51,7 +52,23 @@ function Contact() {
     window.scrollTo(0, 0);
   }, [])
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>Suitique | Biz bilan aloqa</title>
+        <meta
+          name="description"
+          content="Suitique bilan bog‘laning. Savollar, takliflar yoki buyurtmalar bo‘yicha biz bilan bevosita aloqa qiling."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Suitique | Biz bilan aloqa" />
+        <meta
+          property="og:description"
+          content="Suitique bilan bog‘laning. Savollar, takliflar yoki buyurtmalar bo‘yicha biz bilan bevosita aloqa qiling."
+        />
+        <meta property="og:image" content="https://suitique.uz/images/your-og-image.jpg" />
+        <meta property="og:url" content="https://suitique.uz/contact" />
+      </Helmet>
+
       <div className="text-center w-full py-22 px-10 bg-[#F4F4F5]">
         <p className="text-4xl font-light">{t("Catalog-Header-text1")}</p>
         <p className="text-lg text-gray-500 mt-4">
@@ -169,7 +186,7 @@ function Contact() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

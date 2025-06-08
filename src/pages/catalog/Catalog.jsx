@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -105,8 +106,7 @@ function Catalog() {
     setProducts([]);
 
     fetch(
-      `https://testaoron.limsa.uz/api/product?page=1&limit=10&min_sell=2${
-        sizeId ? '&sizes_id=' + sizeId : ''
+      `https://testaoron.limsa.uz/api/product?page=1&limit=10&min_sell=2${sizeId ? '&sizes_id=' + sizeId : ''
       }`
     )
       .then((res) => res.json())
@@ -140,6 +140,22 @@ function Catalog() {
 
   return (
     <>
+      <Helmet>
+        <title>Suitique | Katalog - Zamonaviy kiyimlar va aksessuarlar</title>
+        <meta
+          name="description"
+          content="Suitique katalog sahifasida eng yangi kiyimlar va aksessuarlarni ko‘ring. Erkaklar va ayollar uchun zamonaviy kiyimlar to‘plami."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Suitique | Katalog" />
+        <meta
+          property="og:description"
+          content="Suitique katalog sahifasida eng yangi kiyimlar va aksessuarlarni ko‘ring."
+        />
+        <meta property="og:image" content="https://suitique.uz/images/your-og-image.jpg" />
+        <meta property="og:url" content="https://suitique.uz/catalog" />
+      </Helmet>
+
       <div className='w-full mt-3 '>
         <div className='bg-gray-100 mx-auto px-10 py-20 catalog_cards'>
           <h1 className='text-center text-3xl font-bold mb-4'>
@@ -162,17 +178,16 @@ function Catalog() {
                     <button
                       key={cat.id}
                       onClick={() => setSelectedCategory(cat.id)}
-                      className={`py-1 px-3 rounded text-left text-sm text-gray-700 cursor-pointer ${
-                        selectedCategory === cat.id
+                      className={`py-1 px-3 rounded text-left text-sm text-gray-700 cursor-pointer ${selectedCategory === cat.id
                           ? 'bg-black text-white'
                           : 'text-left'
-                      }`}
+                        }`}
                     >
                       {i18n.language === 'ru'
                         ? cat.name_ru
                         : i18n.language === 'de'
-                        ? cat.name_de
-                        : cat.name_en}
+                          ? cat.name_de
+                          : cat.name_en}
                     </button>
                   ))}
             </div>
@@ -182,11 +197,10 @@ function Catalog() {
                 Object.values(sizes).map((size) => (
                   <button
                     key={size.id}
-                    className={`px-3 py-1 border border-gray-100 rounded cursor-pointer text-sm ${
-                      selectedSize === size.id
+                    className={`px-3 py-1 border border-gray-100 rounded cursor-pointer text-sm ${selectedSize === size.id
                         ? 'bg-black text-white'
                         : 'bg-white text-black'
-                    }`}
+                      }`}
                     onClick={() => handleSizeClick(size.id)}
                   >
                     {size.size}
@@ -199,11 +213,10 @@ function Catalog() {
                 (color) => (
                   <button
                     key={color}
-                    className={`flex items-center gap-1 px-2 py-1 border border-gray-100 rounded ${
-                      selectedColors.includes(color)
+                    className={`flex items-center gap-1 px-2 py-1 border border-gray-100 rounded ${selectedColors.includes(color)
                         ? 'border-gray-300'
                         : 'border-black'
-                    }`}
+                      }`}
                     onClick={() => handleColorClick(color)}
                   >
                     <span
